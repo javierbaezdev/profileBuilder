@@ -23,9 +23,9 @@ export const SCHEMA_MESSAGES = {
 }
 
 export const GRADIENTS_BG = {
-  DARK: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(12,15,29,1) 100%)',
+  DARK: 'linear-gradient(277deg, rgba(255,255,255,0) 0%, rgba(24,24,27,1) 100%)',
   LIGHT:
-    'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(229,231,244,1) 100%)',
+    'linear-gradient(277deg, rgba(255,255,255,0) 0%, rgba(163,163,163,1) 100%)',
 }
 
 export const GET_COLORS_THEME = () => {

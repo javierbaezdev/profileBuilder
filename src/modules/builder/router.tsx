@@ -1,18 +1,23 @@
 import { lazy } from 'react'
 import { PATHS } from './paths'
 import { FAKE_DELAY_ROUTER } from '@/shared/constants'
+import { Primary } from '@/shared/layouts'
 
-const Home = lazy(async () => {
+const Builder = lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, FAKE_DELAY_ROUTER))
-  return import('./pages/Home')
+  return import('./pages/Builder')
 })
 
 const Routes = [
   {
     path: `/${PATHS.BASE_MODULE.CLI}`,
-    key: 'HOME',
+    key: 'BUILDER',
     exact: true,
-    element: () => <Home />,
+    element: () => (
+      <Primary>
+        <Builder />
+      </Primary>
+    ),
   },
 ]
 

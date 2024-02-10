@@ -1,7 +1,7 @@
-import { PATHS } from '@/modules/home/paths'
+import { PATHS } from '@/modules/builder/paths'
 import { NotFound } from '@/shared/pages'
 import { Navigate } from 'react-router-dom'
-import homeRoutes from '@/modules/home/router'
+import builderRoutes from '@/modules/builder/router'
 
 const generalsRoutes = [
   {
@@ -22,6 +22,6 @@ const generalsRoutes = [
   },
 ]
 
-const routes = [...generalsRoutes, ...homeRoutes]
+const routes = [...generalsRoutes, ...builderRoutes]
 
 export default routes

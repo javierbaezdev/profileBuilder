@@ -9,8 +9,8 @@ const scrollbarStyles = (props: SystemStyleObject) => ({
   },
   '&::-webkit-scrollbar-thumb': {
     backgroundColor: mode(
-      COMBINED_COLORS.light.primary[200],
-      COMBINED_COLORS.dark.primary[300]
+      COMBINED_COLORS.zinc[100],
+      COMBINED_COLORS.zinc[950]
     )(props),
     borderRadius: '9px',
     border: '4px solid transparent',
@@ -28,8 +28,8 @@ const styles: Styles = {
   global: (props) => ({
     'html, body': {
       backgroundColor: mode(
-        COMBINED_COLORS.light.primary[200],
-        COMBINED_COLORS.dark.primary[300]
+        COMBINED_COLORS.zinc[100],
+        COMBINED_COLORS.zinc[950]
       )(props),
       height: '100vh',
       width: '100vw',
