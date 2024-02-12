@@ -5,7 +5,7 @@ const Education = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Education</Text>
-      {Array.from({ length: 2 }, (_, index) => (
+      {Array.from({ length: 20 }, (_, index) => (
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.institutionContainer}>

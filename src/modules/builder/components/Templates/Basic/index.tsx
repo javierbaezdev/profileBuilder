@@ -5,7 +5,10 @@ import { About, Education, Experience, Presentation } from './sections'
 const Basic = () => {
   return (
     <Document>
-      <Page style={styles.page}>
+      <Page
+        style={styles.page}
+        wrap={false}
+      >
         <Presentation />
         <About />
         <Experience />

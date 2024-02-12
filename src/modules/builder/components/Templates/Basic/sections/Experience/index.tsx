@@ -5,7 +5,7 @@ const Experience = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Work Experience</Text>
-      {Array.from({ length: 5 }, (_, index) => (
+      {Array.from({ length: 10 }, (_, index) => (
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.companyContainer}>
