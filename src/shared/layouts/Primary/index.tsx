@@ -1,5 +1,5 @@
 import { Box, Flex, Image } from '@chakra-ui/react'
-import LOGO from '@/assets/logo/logoFull.png'
+import LOGO from '@/assets/logo/full.svg'
 import Navigation from './Navigation'
 import {
   GET_IS_SMALL_SCREAM,
@@ -25,14 +25,15 @@ const Primary = ({ children }: Props) => {
         as='header'
         align='center'
         justify='space-between'
-        padding='1rem'
+        px='1rem'
+        py='1rem'
         position='fixed'
         top='0'
         w='100%'
-        borderRadius='0rem 0rem 0.5rem 0.5rem'
+        borderRadius='0rem 0rem 1rem 1rem'
         h={MIN_H_HEADER}
       >
-        <Box w={!isSmallScream ? 250 : 180}>
+        <Box w={!isSmallScream ? 200 : 130}>
           <Image
             objectFit='cover'
             src={LOGO}

@@ -5,7 +5,9 @@ import Preview from '@/modules/builder/components/Preview'
 const Builder = () => {
   return (
     <Grid
-      templateColumns='repeat(3, 1fr)'
+      templateColumns={{
+        lg: 'repeat(3, 1fr)',
+      }}
       w='full'
       gap={2}
     >

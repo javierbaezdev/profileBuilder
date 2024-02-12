@@ -1,4 +1,5 @@
 import { Flex } from '@chakra-ui/react'
+import './loader.css'
 
 const FullScreen = () => {
   return (
@@ -9,7 +10,7 @@ const FullScreen = () => {
       justify='center'
       align='center'
     >
-      loading...
+      <span className='loader' />
     </Flex>
   )
 }

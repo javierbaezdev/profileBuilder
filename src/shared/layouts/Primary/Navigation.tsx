@@ -5,7 +5,7 @@ import NavItem from './NavItem'
 import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 import { SimpleIconButton } from '@/shared/components/buttons'
 import { SimpleDrawer } from '@/shared/components/modals'
-import LOGO from '@/assets/logo/logoFull.png'
+import LOGO from '@/assets/logo/full.svg'
 
 export interface Nav {
   label: string
