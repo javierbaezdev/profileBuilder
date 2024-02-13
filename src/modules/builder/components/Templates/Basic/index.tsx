@@ -1,6 +1,13 @@
 import { Document, Page } from '@react-pdf/renderer'
 import { styles } from './styles'
-import { About, Education, Experience, Presentation } from './sections'
+import {
+  About,
+  Contact,
+  Education,
+  Experience,
+  Presentation,
+  Skills,
+} from './sections'
 
 const Basic = () => {
   return (
@@ -13,6 +20,8 @@ const Basic = () => {
         <About />
         <Experience />
         <Education />
+        <Skills />
+        <Contact />
       </Page>
     </Document>
   )

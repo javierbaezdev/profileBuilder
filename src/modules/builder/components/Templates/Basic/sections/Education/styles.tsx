@@ -1,5 +1,8 @@
 import { StyleSheet } from '@react-pdf/renderer'
-import { baseStyles } from '@/modules/builder/components/Templates/Basic/styles'
+import {
+  basePadding,
+  baseStyles,
+} from '@/modules/builder/components/Templates/Basic/styles'
 import { COMBINED_COLORS } from '@/theme/combinedColors'
 
 export const styles = StyleSheet.create({
@@ -7,12 +10,17 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+    paddingTop: 10,
+    paddingHorizontal: basePadding,
   },
   title: baseStyles.title,
   card: {
     display: 'flex',
     flexDirection: 'column',
     gap: 4,
+    borderRadius: '8px',
+    border: `1px solid ${COMBINED_COLORS.zinc[300]}`,
+    padding: '6px',
   },
   header: {
     display: 'flex',
@@ -27,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   institutionName: {
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: 'bold',
   },
   institutionDuration: {
     fontSize: 8,
@@ -42,7 +50,7 @@ export const styles = StyleSheet.create({
   },
   description: {
     fontSize: 10,
-    fontWeight: 100,
+    fontWeight: 'normal',
     color: COMBINED_COLORS.zinc[500],
   },
 })

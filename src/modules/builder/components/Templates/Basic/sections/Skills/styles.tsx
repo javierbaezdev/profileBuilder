@@ -14,8 +14,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal: basePadding,
   },
   title: baseStyles.title,
-  description: {
-    fontSize: 10,
-    color: COMBINED_COLORS.zinc[500],
+  chipContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '4px',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    borderRadius: '8px',
+    paddingVertical: '4px',
+    paddingHorizontal: '6px',
+    backgroundColor: COMBINED_COLORS.zinc[700],
+    color: COMBINED_COLORS.zinc[200],
+    fontSize: 12,
   },
 })

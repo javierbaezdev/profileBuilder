@@ -1,6 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { PDFViewer, StyleSheet } from '@react-pdf/renderer'
-import { Basic } from '@/modules/builder/components/Templates'
+import Options from './Options'
+import { TEMPLATE_DICT } from '../Templates/getTemplate'
 
 const styles = StyleSheet.create({
   viewer: {
@@ -13,13 +14,17 @@ const Preview = () => {
     <Flex
       w='full'
       h='full'
+      gap={2}
+      direction='column'
     >
+      <Options />
       <PDFViewer
         width='100%'
+        height='100%'
         style={styles.viewer}
         showToolbar={false}
       >
-        <Basic />
+        {TEMPLATE_DICT['BASIC']}
       </PDFViewer>
     </Flex>
   )
