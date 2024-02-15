@@ -1,2 +1,2 @@
-export { default as SimpleSelect } from './SimpleSelect'
-export { default as OnlySelect } from './OnlySelect'
+export { default as Autocomplete } from './Autocomplete'
+export { default as OnlyAutocomplete } from './OnlyAutocomplete'
