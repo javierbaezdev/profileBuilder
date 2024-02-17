@@ -6,8 +6,12 @@ import { OnlyAutocomplete } from '@/shared/components/inputs'
 import templatesOptions from '@/shared/data/templatesOptions.json'
 import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 import { Download } from '@/shared/icons'
+import { useBuilderStore } from '../../store'
 
 const Options = () => {
+  const { presentationData, templateSelected } = useBuilderStore(
+    (store) => store
+  )
   const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
     <Flex
@@ -46,7 +50,7 @@ const Options = () => {
           </Flex>
           {!isSmallScream ? (
             <PDFDownloadLink
-              document={TEMPLATE_DICT['BASIC']}
+              document={TEMPLATE_DICT[templateSelected](presentationData)}
               fileName='cv'
             >
               {({ loading }) => (

@@ -9,6 +9,7 @@ export const KEYS_DND = {
 }
 
 export const NO_DATA = {
+  general: 'Sin datos Proporcionados',
   description: 'Sin descripción 🤐',
   columnName: 'Sin nombre',
 }

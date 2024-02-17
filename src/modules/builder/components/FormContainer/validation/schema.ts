@@ -1,6 +1,13 @@
 import * as Yup from 'yup'
 import { SCHEMA_MESSAGES } from '@/shared/constants'
 
+export const presentationSchema = Yup.object().shape({
+  fullName: Yup.string().required(SCHEMA_MESSAGES.required),
+  description: Yup.string(),
+  imgUrl: Yup.string(),
+  isRequiredPresentation: Yup.boolean(),
+})
+
 export const experienceSchema = Yup.object().shape({
   works: Yup.array()
     .of(
@@ -52,25 +59,4 @@ export const contactSchema = Yup.object().shape({
       })
     )
     .min(1, SCHEMA_MESSAGES.required),
-})
-
-export const schema = Yup.object().shape({
-  presentation: Yup.object().shape({
-    fullName: Yup.string().required(SCHEMA_MESSAGES.required),
-    description: Yup.string(),
-    imgUrl: Yup.string(),
-  }),
-  about: Yup.object().shape({
-    description: Yup.string().required(SCHEMA_MESSAGES.required),
-  }),
-  experience: experienceSchema,
-  education: educationSchema,
-  skills: skillsSchema,
-  contact: contactSchema,
-  isRequiredPresentation: Yup.boolean(),
-  isRequiredAbout: Yup.boolean(),
-  isRequiredExperience: Yup.boolean(),
-  isRequiredEducation: Yup.boolean(),
-  isRequiredSkills: Yup.boolean(),
-  isRequiredContact: Yup.boolean(),
 })

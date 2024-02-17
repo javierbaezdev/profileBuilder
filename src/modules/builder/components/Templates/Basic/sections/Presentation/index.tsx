@@ -1,14 +1,21 @@
 import { Text, View, Image } from '@react-pdf/renderer'
 import { styles } from './styles'
+import { PresentationFrom } from '@/modules/builder/components/FormContainer/validation/initialValues'
+import { NO_DATA } from '@/shared/constants'
 
-const Presentation = () => {
+interface Props {
+  presentationData: PresentationFrom
+}
+
+const Presentation = ({ presentationData }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.boxTexts}>
-        <Text style={styles.nameText}>Avatar</Text>
+        <Text style={styles.nameText}>
+          {presentationData?.fullName || NO_DATA.general}
+        </Text>
         <Text style={styles.descriptionText}>
-          Full Stack Engineer focused on building products with extra attention
-          to detail
+          {presentationData?.description || NO_DATA.general}
         </Text>
         <Text style={styles.locationText}>Wrocław, Poland, CET</Text>
       </View>

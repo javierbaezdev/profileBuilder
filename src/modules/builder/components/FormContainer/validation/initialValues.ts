@@ -1,39 +1,17 @@
-import { BuilderFormCreate } from '@/modules/builder/types'
+import { Presentation } from '@/modules/builder/types'
 
-export interface BuilderFrom extends BuilderFormCreate {
+export interface PresentationFrom extends Presentation {
   isRequiredPresentation: boolean
-  isRequiredAbout: boolean
+  /* isRequiredAbout: boolean
   isRequiredExperience: boolean
   isRequiredEducation: boolean
   isRequiredSkills: boolean
-  isRequiredContact: boolean
+  isRequiredContact: boolean */
 }
 
-export const initialValues: BuilderFrom = {
-  presentation: {
-    fullName: '',
-    description: '',
-    imgUrl: undefined,
-  },
-  about: {
-    description: '',
-  },
-  experience: {
-    works: [],
-  },
-  education: {
-    institutions: [],
-  },
-  skills: {
-    skills: [],
-  },
-  contact: {
-    contacts: [],
-  },
+export const initialValuesPresentation: PresentationFrom = {
+  fullName: '',
+  description: '',
+  imgUrl: undefined,
   isRequiredPresentation: true,
-  isRequiredAbout: true,
-  isRequiredExperience: true,
-  isRequiredEducation: true,
-  isRequiredSkills: true,
-  isRequiredContact: true,
 }

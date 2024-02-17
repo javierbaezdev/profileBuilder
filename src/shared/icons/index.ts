@@ -1,3 +1,6 @@
 export { default as PaintFilled } from './PaintFilled'
 export { default as MenuDeep } from './MenuDeep'
 export { default as Download } from './Download'
+export { default as DeviceFloppy } from './DeviceFloppy'
+export { default as CircleMinus } from './CircleMinus'
+export { default as CloudUpload } from './CloudUpload'

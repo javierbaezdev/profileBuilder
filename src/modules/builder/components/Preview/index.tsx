@@ -4,6 +4,7 @@ import { PDFViewer, StyleSheet } from '@react-pdf/renderer'
 import Options from './Options'
 import { TEMPLATE_DICT } from '../Templates/getTemplate'
 import { Min01 } from '@/shared/components/loaders'
+import { useBuilderStore } from '../../store'
 
 const styles = StyleSheet.create({
   viewer: {
@@ -15,16 +16,20 @@ const FAKE_TIME_LOADING = 2000
 
 const Preview = () => {
   const [fakeLoading, setFakeLoading] = useState(true)
+  const { presentationData, templateSelected } = useBuilderStore(
+    (store) => store
+  )
 
   useEffect(() => {
-    if (fakeLoading) {
+    if (!fakeLoading) {
       setFakeLoading(true)
     }
 
     setTimeout(() => {
       setFakeLoading(false)
     }, FAKE_TIME_LOADING)
-  }, [])
+  }, [presentationData])
+
   return (
     <Flex
       w='full'
@@ -48,7 +53,7 @@ const Preview = () => {
           }}
           showToolbar={false}
         >
-          {TEMPLATE_DICT['BASIC']}
+          {TEMPLATE_DICT[templateSelected](presentationData)}
         </PDFViewer>
         {fakeLoading && (
           <Flex
