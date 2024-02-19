@@ -1,8 +1,8 @@
 import { COMBINED_COLORS } from '@/theme/combinedColors'
-import { StyleSheet } from '@react-pdf/renderer'
+import { StyleSheet, Styles } from '@react-pdf/renderer'
 import { basePadding } from '@/modules/builder/components/Templates/Basic/styles'
 
-export const styles = StyleSheet.create({
+export const styles: Styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: basePadding,
     borderBottomLeftRadius: '8px',
     borderBottomRightRadius: '8px',
+    gap: 2,
   },
   boxTexts: {
     display: 'flex',

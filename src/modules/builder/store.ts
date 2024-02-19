@@ -5,14 +5,12 @@ import {
   PresentationFrom,
   initialValuesPresentation,
 } from './components/FormContainer/validation/initialValues'
+import trimObjectValues from '@/shared/utils/trimObjectValues'
 
 interface State {
   templateSelected: 'BASIC'
   presentationData: PresentationFrom
-  setPresentationData: (
-    presentation: PresentationFrom,
-    isUpdate: boolean
-  ) => void
+  setPresentationData: (presentation: PresentationFrom) => void
   resetData: (type: string) => void
 }
 
@@ -23,9 +21,11 @@ export const useBuilderStore = create<State>()(
         return {
           templateSelected: 'BASIC',
           presentationData: initialValuesPresentation,
-          setPresentationData: (presentation, isUpdate) => {
+          setPresentationData: (presentation) => {
+            const presentationFormat = trimObjectValues(presentation)
+            const isUpdate = presentationFormat.isUpdate
             set({
-              presentationData: presentation,
+              presentationData: { ...presentationFormat, isUpdate: true },
             })
             showToast({
               msg: `Presentación ${

@@ -18,6 +18,7 @@ export const SCHEMA_MESSAGES = {
   required: 'El campo es requerido',
   minNum: 'El valor debe ser mayor o igual a: ',
   maxNum: 'El valor debe ser menor o igual a: ',
+  maxCha: 'La cantidad máxima de caracteres permitida es de: ',
   isNumber: 'El valor ingresado debe ser un número',
   email: 'Ingrese una dirección de correo electrónico válida',
   atLeastOne: 'Se requiere al menos un elemento en la lista',

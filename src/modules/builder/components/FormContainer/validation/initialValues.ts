@@ -2,6 +2,7 @@ import { Presentation } from '@/modules/builder/types'
 
 export interface PresentationFrom extends Presentation {
   isRequiredPresentation: boolean
+  isUpdate: boolean
   /* isRequiredAbout: boolean
   isRequiredExperience: boolean
   isRequiredEducation: boolean
@@ -12,6 +13,7 @@ export interface PresentationFrom extends Presentation {
 export const initialValuesPresentation: PresentationFrom = {
   fullName: '',
   description: '',
-  imgUrl: undefined,
+  imgUrl: '',
   isRequiredPresentation: true,
+  isUpdate: false,
 }

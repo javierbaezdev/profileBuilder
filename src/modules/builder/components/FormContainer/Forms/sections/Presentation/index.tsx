@@ -6,13 +6,14 @@ import {
 import { presentationSchema } from '@/modules/builder/components/FormContainer/validation/schema'
 import { Flex } from '@chakra-ui/react'
 import {
-  DropZoneInput,
   SimpleInput,
+  SimpleInputFile,
   SimpleTextArea,
 } from '@/shared/components/inputs'
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import { useBuilderStore } from '@/modules/builder/store'
+import { useEffect } from 'react'
 
 const PresentationForm = () => {
   const { presentationData, setPresentationData } = useBuilderStore(
@@ -22,14 +23,19 @@ const PresentationForm = () => {
     initialValues: initialValuesPresentation,
     validationSchema: presentationSchema,
     onSubmit: async (values) => {
-      setPresentationData(values, false)
+      setPresentationData(values)
     },
   })
+
+  useEffect(() => {
+    formik.setValues(presentationData)
+  }, [presentationData])
 
   return (
     <Flex
       direction='column'
       gap={2}
+      w='full'
     >
       <SimpleInput
         name='fullName'
@@ -45,10 +51,15 @@ const PresentationForm = () => {
         errorMsg={formik.errors?.description}
         onChange={formik.handleChange}
       />
-      <DropZoneInput
+      <SimpleInputFile
+        label='Foto'
+        value={formik.values?.imgUrl ? [formik.values.imgUrl] : []}
+        onChange={(urls) =>
+          formik.setFieldValue('imgUrl', urls?.length > 0 ? urls[0] : '')
+        }
         limit={1}
         accept={['image']}
-        useCropImg={true}
+        useCropImg={!Boolean(formik.values?.imgUrl)}
         multiple={false}
       />
       <Flex justify='flex-end'>
@@ -58,7 +69,7 @@ const PresentationForm = () => {
           size='xs'
           iconSpacing={1}
         >
-          Guardar
+          {formik.values.isUpdate ? 'Actualizar' : 'Guardar'}
         </SimpleButton>
       </Flex>
     </Flex>

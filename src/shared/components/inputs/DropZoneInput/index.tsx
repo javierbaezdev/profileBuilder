@@ -1,5 +1,5 @@
 import { Box, Flex, Icon, Image, Text, useDisclosure } from '@chakra-ui/react'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { SimpleIconButton } from '../../buttons'
 import { CircleMinus, CloudUpload } from '@/shared/icons'
@@ -8,13 +8,17 @@ import CropImg from './CropImg'
 export const ASPECT_RATIO = 1
 export const MIN_DIMENSION = 150
 
+export type Accept = 'image' | 'video' | 'pdf' | 'excel' | 'csv'
+
 interface Props {
   limit: number
-  accept: string[]
+  accept: Accept[]
   multiple: boolean
   useCropImg: boolean
   minDimention?: number
   aspectRatio?: number
+  onChange: (filesUrl: string[]) => void
+  value?: string[]
 }
 
 const fileTypesArray = [
@@ -50,19 +54,54 @@ const DropZoneInput = ({
   useCropImg,
   minDimention,
   aspectRatio,
+  onChange,
+  value,
 }: Props) => {
+  const minDimentionFinal = minDimention || MIN_DIMENSION
   const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
   const [myFiles, setMyFiles] = useState<Array<string>>([])
 
-  const onDrop = useCallback(
-    (acceptedFiles: Array<File>) => {
-      if (!multiple) {
-        //validar el tamano imagen aqui
+  const isValidDimentionImg = async (url: string) => {
+    return await new Promise((resolve, reject) => {
+      let imageElement = document.createElement('img')
+      imageElement.src = url
+      imageElement.onload = () => {
+        const { height, width } = imageElement
+        const isValid = !(
+          width < minDimentionFinal || height < minDimentionFinal
+        )
+        resolve(isValid)
+      }
+      imageElement.onerror = () => {
+        reject(new Error('Failed to load image'))
+      }
+    })
+  }
 
-        const acceptedFilesUrls = URL.createObjectURL(acceptedFiles[0])
-        setMyFiles([acceptedFilesUrls])
+  const onDrop = useCallback(
+    async (acceptedFiles: Array<File>) => {
+      if (acceptedFiles.length === 0) {
         return
       }
+
+      if (!multiple) {
+        if (accept?.at(0) === 'image') {
+          /* const compressed = await compressedImg(acceptedFiles[0]) */
+          const acceptedImgUrl = URL.createObjectURL(acceptedFiles[0])
+          const isValidImgDimention = await isValidDimentionImg(acceptedImgUrl)
+          if (!isValidImgDimention) {
+            return
+          }
+          setMyFiles([acceptedImgUrl])
+          return
+        } else {
+          const acceptedFilesUrl = URL.createObjectURL(acceptedFiles[0])
+          setMyFiles([acceptedFilesUrl])
+          return
+        }
+      }
+
+      //if multiple
       const acceptedFilesUrls = acceptedFiles?.map((file) =>
         URL.createObjectURL(file)
       )
@@ -98,13 +137,21 @@ const DropZoneInput = ({
     const newFiles = [...myFiles]
     newFiles.splice(newFiles.indexOf(fileUrl), 1)
     setMyFiles(newFiles)
+    onChange(newFiles)
     onOpen()
   }
 
-  const updateSrc = (newUrl: string) => {
+  const updateSrc = async (newUrl: string) => {
     setMyFiles([newUrl])
+    onChange([newUrl])
     onClose()
   }
+
+  useEffect(() => {
+    if (value) {
+      setMyFiles(value)
+    }
+  }, [value])
 
   return (
     <>
@@ -113,7 +160,6 @@ const DropZoneInput = ({
         bg='zinc.900'
         borderRadius={8}
         p={4}
-        textAlign='center'
         border='2px dotted'
         borderColor='zinc.500'
         marginBlock={2}
@@ -122,21 +168,40 @@ const DropZoneInput = ({
         justify='center'
         align='center'
         direction='column'
+        cursor='pointer'
+        w='full'
       >
         <input {...getInputProps()} />
         <Icon fontSize={30}>
           <CloudUpload />
         </Icon>
         {isDragActive ? (
-          <Text>Suelta la imagen aquí...</Text>
+          <Text>
+            Suelta la{' '}
+            {accept?.length === 1 && accept?.at(0) === 'image'
+              ? 'imagen '
+              : 'archivo '}
+            aquí...
+          </Text>
         ) : (
           <Text>
-            Arrastre y suelte la imagen aquí o haga clic para seleccionar
+            Arrastre y suelte la{' '}
+            {accept?.length === 1 && accept?.at(0) === 'image'
+              ? 'imagen '
+              : 'archivo '}
+            aquí o haga clic para seleccionar
           </Text>
         )}
-        <Text fontSize={10}>{Object.keys(acceptedExtensions).join(', ')}</Text>
+        <Text fontSize={10}>
+          Formatos permitidos: {Object.keys(acceptedExtensions).join(', ')}
+        </Text>
+        {!multiple && accept?.at(0) === 'image' && (
+          <Text fontSize={10}>
+            Dimenciones minimas: {minDimentionFinal}X{minDimentionFinal}
+          </Text>
+        )}
       </Flex>
-      {myFiles.length > 0 && (
+      {myFiles.length === 1 && accept?.at(0) === 'image' && (
         <Flex
           gap={4}
           py={2}
@@ -171,15 +236,19 @@ const DropZoneInput = ({
         </Flex>
       )}
 
-      {isOpen && !multiple && useCropImg && myFiles.length > 0 && (
-        <CropImg
-          imageSrc={myFiles[0]}
-          isOpen={isOpen}
-          updateSrc={updateSrc}
-          minDimention={minDimention}
-          aspectRatio={aspectRatio}
-        />
-      )}
+      {isOpen &&
+        !multiple &&
+        useCropImg &&
+        myFiles.length === 1 &&
+        accept?.at(0) === 'image' && (
+          <CropImg
+            imageSrc={myFiles[0]}
+            isOpen={isOpen}
+            updateSrc={updateSrc}
+            minDimention={minDimention}
+            aspectRatio={aspectRatio}
+          />
+        )}
     </>
   )
 }

@@ -2,8 +2,10 @@ import * as Yup from 'yup'
 import { SCHEMA_MESSAGES } from '@/shared/constants'
 
 export const presentationSchema = Yup.object().shape({
-  fullName: Yup.string().required(SCHEMA_MESSAGES.required),
-  description: Yup.string(),
+  fullName: Yup.string()
+    .max(43, SCHEMA_MESSAGES.maxCha + 43)
+    .required(SCHEMA_MESSAGES.required),
+  description: Yup.string().max(100, SCHEMA_MESSAGES.maxCha + 100),
   imgUrl: Yup.string(),
   isRequiredPresentation: Yup.boolean(),
 })
