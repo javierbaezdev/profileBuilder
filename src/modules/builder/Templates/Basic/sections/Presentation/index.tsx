@@ -1,8 +1,9 @@
-import { Text, View, Image } from '@react-pdf/renderer'
+import { View, Image } from '@react-pdf/renderer'
 import { styles } from './styles'
 import { PresentationFrom } from '@/modules/builder/components/FormContainer/validation/initialValues'
 import { NO_DATA } from '@/shared/constants'
-import { CustomText } from '@/modules/builder/components/Templates/components'
+import { CustomText } from '@/modules/builder/Templates/components'
+import { MapPinFilled } from '@/modules/builder/Templates/components/icons'
 
 interface Props {
   presentationData: PresentationFrom
@@ -23,7 +24,14 @@ const Presentation = ({ presentationData }: Props) => {
           value={presentationData?.description}
           wordsPerLine={10}
         />
-        <Text style={styles.locationText}>Wrocław, Poland, CET Wrocław</Text>
+        <View style={styles.containerLocation}>
+          <MapPinFilled />
+          <CustomText
+            styles={styles.locationText}
+            value={presentationData?.location}
+            wordsPerLine={10}
+          />
+        </View>
       </View>
       {presentationData.imgUrl && (
         <View style={styles.boxImage}>

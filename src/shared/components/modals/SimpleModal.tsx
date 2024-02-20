@@ -15,7 +15,7 @@ interface Props extends ModalProps {
 }
 
 const SimpleModal = ({ children, modalHeader, ...props }: Props) => {
-  const bg = useColorModeValue('light.secondary.300', 'dark.secondary.300')
+  const bg = useColorModeValue('zinc.100', 'zinc.900')
   return (
     <Modal
       isCentered

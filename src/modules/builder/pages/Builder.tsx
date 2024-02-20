@@ -16,7 +16,7 @@ const Builder = () => {
         colSpan={{
           lg: 2,
         }}
-        order={{ base: 2, lg: 1 }}
+        /* order={{ base: 2, lg: 1 }} */
       >
         <FormContainer />
       </GridItem>
@@ -24,7 +24,7 @@ const Builder = () => {
         colSpan={{
           lg: 3,
         }}
-        order={{ base: 1, lg: 2 }}
+        /* order={{ base: 1, lg: 2 }} */
       >
         <Preview />
       </GridItem>

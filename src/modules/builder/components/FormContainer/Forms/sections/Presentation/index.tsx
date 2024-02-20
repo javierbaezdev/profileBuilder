@@ -1,10 +1,11 @@
+import { useEffect } from 'react'
+import { Flex } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import {
   PresentationFrom,
   initialValuesPresentation,
 } from '@/modules/builder/components/FormContainer/validation/initialValues'
 import { presentationSchema } from '@/modules/builder/components/FormContainer/validation/schema'
-import { Flex } from '@chakra-ui/react'
 import {
   SimpleInput,
   SimpleInputFile,
@@ -13,7 +14,6 @@ import {
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import { useBuilderStore } from '@/modules/builder/store'
-import { useEffect } from 'react'
 
 const PresentationForm = () => {
   const { presentationData, setPresentationData } = useBuilderStore(
@@ -49,6 +49,13 @@ const PresentationForm = () => {
         label='Descripción'
         value={formik.values?.description}
         errorMsg={formik.errors?.description}
+        onChange={formik.handleChange}
+      />
+      <SimpleInput
+        name='location'
+        label='Ubicación'
+        value={formik.values.location}
+        errorMsg={formik.errors?.location}
         onChange={formik.handleChange}
       />
       <SimpleInputFile

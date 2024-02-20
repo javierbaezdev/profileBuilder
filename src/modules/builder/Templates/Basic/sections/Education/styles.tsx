@@ -2,7 +2,7 @@ import { StyleSheet } from '@react-pdf/renderer'
 import {
   basePadding,
   baseStyles,
-} from '@/modules/builder/components/Templates/Basic/styles'
+} from '@/modules/builder/Templates/Basic/styles'
 import { COMBINED_COLORS } from '@/theme/combinedColors'
 
 export const styles = StyleSheet.create({
@@ -20,46 +20,33 @@ export const styles = StyleSheet.create({
     gap: 4,
     borderRadius: '8px',
     border: `1px solid ${COMBINED_COLORS.zinc[300]}`,
-    padding: '4px',
+    padding: '6px',
   },
   header: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  companyContainer: {
+  institutionContainer: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     gap: 4,
   },
-  companyName: {
+  institutionName: {
     fontSize: 14,
     fontWeight: 'bold',
   },
-  companyType: {
-    backgroundColor: COMBINED_COLORS.zinc[300],
-    borderRadius: 8,
-    fontSize: 8,
-    paddingVertical: 2,
-    paddingHorizontal: 4,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  companyDuration: {
+  institutionDuration: {
     fontSize: 8,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  positionsContainer: {
+  descriptionContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: 2,
-  },
-  positions: {
-    fontSize: 12,
-    fontWeight: 'bold',
   },
   description: {
     fontSize: 10,

@@ -1,6 +1,6 @@
 import { COMBINED_COLORS } from '@/theme/combinedColors'
 import { StyleSheet, Styles } from '@react-pdf/renderer'
-import { basePadding } from '@/modules/builder/components/Templates/Basic/styles'
+import { basePadding } from '@/modules/builder/Templates/Basic/styles'
 
 export const styles: Styles = StyleSheet.create({
   container: {
@@ -25,12 +25,18 @@ export const styles: Styles = StyleSheet.create({
     color: COMBINED_COLORS.zinc[50],
   },
   descriptionText: {
-    fontSize: 10,
+    fontSize: 12,
     color: COMBINED_COLORS.zinc[200],
     fontWeight: 'thin',
   },
+  containerLocation: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+  },
   locationText: {
-    fontSize: 8,
+    fontSize: 10,
     color: COMBINED_COLORS.zinc[200],
     fontWeight: 'thin',
   },

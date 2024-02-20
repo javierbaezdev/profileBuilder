@@ -2,7 +2,7 @@ import { StyleSheet } from '@react-pdf/renderer'
 import {
   basePadding,
   baseStyles,
-} from '@/modules/builder/components/Templates/Basic/styles'
+} from '@/modules/builder/Templates/Basic/styles'
 import { COMBINED_COLORS } from '@/theme/combinedColors'
 
 export const styles = StyleSheet.create({

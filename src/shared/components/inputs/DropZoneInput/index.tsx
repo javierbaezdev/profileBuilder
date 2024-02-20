@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import { SimpleIconButton } from '../../buttons'
 import { CircleMinus, CloudUpload } from '@/shared/icons'
 import CropImg from './CropImg'
+import imageCompression from 'browser-image-compression'
 
 export const ASPECT_RATIO = 1
 export const MIN_DIMENSION = 150
@@ -61,6 +62,21 @@ const DropZoneInput = ({
   const { isOpen, onClose, onOpen } = useDisclosure({ defaultIsOpen: true })
   const [myFiles, setMyFiles] = useState<Array<string>>([])
 
+  const compressionImg = async (imageFile: File) => {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 500,
+      useWebWorker: true,
+    }
+    try {
+      const compressedFile = await imageCompression(imageFile, options)
+
+      return compressedFile
+    } catch (error) {
+      return imageFile
+    }
+  }
+
   const isValidDimentionImg = async (url: string) => {
     return await new Promise((resolve, reject) => {
       let imageElement = document.createElement('img')
@@ -86,8 +102,8 @@ const DropZoneInput = ({
 
       if (!multiple) {
         if (accept?.at(0) === 'image') {
-          /* const compressed = await compressedImg(acceptedFiles[0]) */
-          const acceptedImgUrl = URL.createObjectURL(acceptedFiles[0])
+          const compressed = await compressionImg(acceptedFiles[0])
+          const acceptedImgUrl = URL.createObjectURL(compressed)
           const isValidImgDimention = await isValidDimentionImg(acceptedImgUrl)
           if (!isValidImgDimention) {
             return

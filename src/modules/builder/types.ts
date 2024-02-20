@@ -1,6 +1,7 @@
 export interface Presentation {
   fullName: string
   description?: string
+  location: string
   imgUrl?: string
 }
 
@@ -8,7 +9,7 @@ export interface About {
   description?: string
 }
 
-export type WorkType = 'REMOTE' | 'IN_PERSON' | 'FREELANCE'
+export type WorkType = 'REMOTE' | 'IN_PERSON' | 'FREELANCE' | 'MIXED'
 export interface Work {
   key: string
   description?: string

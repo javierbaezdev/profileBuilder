@@ -71,37 +71,48 @@ const CropImg = ({
     >
       <Flex
         direction='column'
-        gap={2}
+        gap={4}
+        justify='center'
+        align='center'
+        w='full'
       >
-        <ReactCrop
-          crop={crop}
-          onChange={(c) => setCrop(c)}
-          keepSelection
-          aspect={aspectRatio || ASPECT_RATIO}
-          minWidth={minDimention || MIN_DIMENSION}
+        <Flex
+          border='1px solid'
+          borderColor='zinc.100'
         >
-          <img
-            ref={imgRef}
-            src={imageSrc}
-            onLoad={(e) => onImageLoad(e)}
-          />
-        </ReactCrop>
-        <SimpleButton
-          rightIcon={<DeviceFloppy />}
-          size='xs'
-          iconSpacing={1}
-          onClick={() => generateNewImageSrc()}
+          <ReactCrop
+            crop={crop}
+            onChange={(c) => setCrop(c)}
+            keepSelection
+            aspect={aspectRatio || ASPECT_RATIO}
+            minWidth={minDimention || MIN_DIMENSION}
+          >
+            <img
+              ref={imgRef}
+              src={imageSrc}
+              onLoad={(e) => onImageLoad(e)}
+            />
+          </ReactCrop>
+        </Flex>
+        <Flex
+          justify='flex-end'
+          w='full'
         >
-          Confirmar
-        </SimpleButton>
+          <SimpleButton
+            rightIcon={<DeviceFloppy />}
+            size='xs'
+            iconSpacing={1}
+            onClick={() => generateNewImageSrc()}
+          >
+            Confirmar
+          </SimpleButton>
+        </Flex>
         {crop && (
           <canvas
             ref={previewCanvasRef}
             style={{
               display: 'none',
               objectFit: 'contain',
-              width: 150,
-              height: 150,
             }}
           />
         )}

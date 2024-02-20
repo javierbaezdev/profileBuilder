@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import { SimpleButton, SimpleIconButton } from '@/shared/components/buttons'
-import { TEMPLATE_DICT } from '../Templates/getTemplate'
+import { TEMPLATE_DICT } from '@/modules/builder/Templates/getTemplate'
 import { OnlyAutocomplete } from '@/shared/components/inputs'
 import templatesOptions from '@/shared/data/templatesOptions.json'
 import { GET_IS_SMALL_SCREAM } from '@/shared/constants'

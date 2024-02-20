@@ -24,18 +24,18 @@ const AccordionContainer = ({ title, children }: Props) => {
         border='1px solid'
         borderColor='zinc.600'
       >
-        <h2>
-          <AccordionButton>
-            <Box
-              as='span'
-              flex='1'
-              textAlign='left'
-            >
-              {title}
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
+        <AccordionButton>
+          <Box
+            as='span'
+            flex='1'
+            textAlign='left'
+            color='zinc.300'
+          >
+            {title}
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+
         <AccordionPanel pb={4}>{children}</AccordionPanel>
       </AccordionItem>
     </Accordion>

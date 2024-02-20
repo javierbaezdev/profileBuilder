@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Flex } from '@chakra-ui/react'
 import { PDFViewer, StyleSheet } from '@react-pdf/renderer'
 import Options from './Options'
-import { TEMPLATE_DICT } from '../Templates/getTemplate'
+import { TEMPLATE_DICT } from '@/modules/builder/Templates/getTemplate'
 import { Min01 } from '@/shared/components/loaders'
 import { useBuilderStore } from '../../store'
 
@@ -16,7 +16,7 @@ const FAKE_TIME_LOADING = 2000
 
 const Preview = () => {
   const [fakeLoading, setFakeLoading] = useState(true)
-  const { presentationData, templateSelected } = useBuilderStore(
+  const { presentationData, aboutData, templateSelected } = useBuilderStore(
     (store) => store
   )
 
@@ -28,7 +28,7 @@ const Preview = () => {
     setTimeout(() => {
       setFakeLoading(false)
     }, FAKE_TIME_LOADING)
-  }, [presentationData])
+  }, [presentationData, aboutData])
 
   return (
     <Flex
@@ -53,7 +53,7 @@ const Preview = () => {
           }}
           showToolbar={false}
         >
-          {TEMPLATE_DICT[templateSelected](presentationData)}
+          {TEMPLATE_DICT[templateSelected](presentationData, aboutData)}
         </PDFViewer>
         {fakeLoading && (
           <Flex
