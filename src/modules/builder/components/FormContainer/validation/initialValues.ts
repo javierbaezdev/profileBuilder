@@ -40,9 +40,9 @@ export const initialValuesWork: Work = {
   key: '',
   companyName: '',
   position: '',
-  startYear: '',
+  startDate: '',
   description: '',
-  endYear: '',
+  endDate: '',
   type: 'REMOTE',
 }
 

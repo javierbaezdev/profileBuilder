@@ -4,7 +4,11 @@ import { useFormik } from 'formik'
 import { initialValuesWork } from '@/modules/builder/components/FormContainer/validation/initialValues'
 import { workSchema } from '@/modules/builder/components/FormContainer/validation/schema'
 import { generateId } from '@/shared/utils/generate'
-import { SimpleInput, SimpleTextArea } from '@/shared/components/inputs'
+import {
+  DatePicker,
+  SimpleInput,
+  SimpleTextArea,
+} from '@/shared/components/inputs'
 import { Flex } from '@chakra-ui/react'
 
 interface Props {
@@ -52,6 +56,30 @@ const WorkForm = ({ data, onClose, isOpen }: Props) => {
           errorMsg={formik.errors?.description}
           onChange={formik.handleChange}
         />
+        <Flex gap={2}>
+          <DatePicker
+            label='Fecha desde'
+            dateValue={
+              formik.values?.startDate
+                ? new Date(formik.values?.startDate)
+                : undefined
+            }
+            onChange={(date) =>
+              formik.setFieldValue('startDate', date?.toISOString())
+            }
+          />
+          <DatePicker
+            label='Fecha hasta'
+            dateValue={
+              formik.values?.endDate
+                ? new Date(formik.values?.endDate)
+                : undefined
+            }
+            onChange={(date) =>
+              formik.setFieldValue('endDate', date?.toISOString())
+            }
+          />
+        </Flex>
       </Flex>
     </SimpleModal>
   )

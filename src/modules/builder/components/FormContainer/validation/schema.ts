@@ -28,8 +28,8 @@ export const workSchema = Yup.object().shape({
   companyName: Yup.string()
     .max(30, SCHEMA_MESSAGES.maxCha + 30)
     .required(SCHEMA_MESSAGES.required),
-  startYear: Yup.string().required(SCHEMA_MESSAGES.required),
-  endYear: Yup.string(),
+  startDate: Yup.string().required(SCHEMA_MESSAGES.required),
+  endDate: Yup.string(),
   type: Yup.string().required(SCHEMA_MESSAGES.required),
 })
 

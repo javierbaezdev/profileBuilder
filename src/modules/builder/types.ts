@@ -15,8 +15,8 @@ export interface Work {
   description?: string
   position: string
   companyName: string
-  startYear: string
-  endYear?: string
+  startDate: string
+  endDate?: string
   type: WorkType
 }
 
