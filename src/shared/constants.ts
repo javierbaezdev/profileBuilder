@@ -24,6 +24,13 @@ export const SCHEMA_MESSAGES = {
   atLeastOne: 'Se requiere al menos un elemento en la lista',
 }
 
+export const WORK_TYPE_DICT: Record<string, any> = {
+  REMOTE: { colorSchema: 'purple', es: 'Remoto' },
+  IN_PERSON: { colorSchema: 'orange', es: 'Presencial' },
+  FREELANCE: { colorSchema: 'green', es: 'Independiente' },
+  MIXED: { colorSchema: 'cian', es: 'Combinado' },
+}
+
 export const GRADIENTS_BG = {
   DARK: 'linear-gradient(277deg, rgba(255,255,255,0) 0%, rgba(24,24,27,1) 100%)',
   LIGHT:

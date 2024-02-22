@@ -17,6 +17,7 @@ export interface Work {
   companyName: string
   startDate: string
   endDate?: string
+  isCurrent: boolean
   type: WorkType
 }
 

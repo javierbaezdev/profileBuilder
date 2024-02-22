@@ -42,7 +42,8 @@ export const initialValuesWork: Work = {
   position: '',
   startDate: '',
   description: '',
-  endDate: '',
+  endDate: undefined,
+  isCurrent: false,
   type: 'REMOTE',
 }
 
