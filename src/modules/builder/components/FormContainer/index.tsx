@@ -8,7 +8,6 @@ const FormContainer = () => {
       h='full'
       gap={2}
       borderRadius={8}
-      overflow='auto'
       flexDirection='column'
     >
       <Flex

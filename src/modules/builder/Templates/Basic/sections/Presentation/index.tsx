@@ -4,6 +4,7 @@ import { PresentationFrom } from '@/modules/builder/components/FormContainer/val
 import { NO_DATA } from '@/shared/constants'
 import { CustomText } from '@/modules/builder/Templates/components'
 import { MapPinFilled } from '@/modules/builder/Templates/components/icons'
+import defaultImg from '@/assets/CAT.jpg'
 
 interface Props {
   presentationData: PresentationFrom
@@ -28,7 +29,7 @@ const Presentation = ({ presentationData }: Props) => {
           <MapPinFilled />
           <CustomText
             styles={styles.locationText}
-            value={presentationData?.location}
+            value={presentationData?.location || NO_DATA.general}
             wordsPerLine={10}
           />
         </View>
@@ -36,6 +37,11 @@ const Presentation = ({ presentationData }: Props) => {
       {presentationData.imgUrl && (
         <View style={styles.boxImage}>
           <Image source={presentationData.imgUrl} />
+        </View>
+      )}
+      {!presentationData.isUpdate && (
+        <View style={styles.boxImage}>
+          <Image source={defaultImg} />
         </View>
       )}
     </View>

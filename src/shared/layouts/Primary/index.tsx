@@ -43,7 +43,7 @@ const Primary = ({ children }: Props) => {
         <Navigation />
       </Flex>
       <Flex
-        mt={MIN_H_HEADER + 20}
+        mt={MIN_H_HEADER}
         p={4}
         w='100%'
         sx={GET_STYLES_SCROLL()}

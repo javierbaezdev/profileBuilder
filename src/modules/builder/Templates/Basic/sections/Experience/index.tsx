@@ -1,31 +1,35 @@
 import { Text, View } from '@react-pdf/renderer'
 import { styles } from './styles'
+import { ExperienceFrom } from '@/modules/builder/components/FormContainer/validation/initialValues'
+import { WORK_TYPE_DICT } from '@/shared/constants'
+import { formatRangeDateString } from '@/shared/utils/format'
 
-const Experience = () => {
+interface Props {
+  experienceData: ExperienceFrom
+}
+
+const Experience = ({ experienceData }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Work Experience</Text>
-      {Array.from({ length: 10 }, (_, index) => (
+      {experienceData?.works?.map((work) => (
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.companyContainer}>
-              <Text style={styles.companyName}>Clevertech {index + 1}</Text>
+              <Text style={styles.companyName}>{work.companyName}</Text>
               <View style={styles.companyType}>
-                <Text>Remote</Text>
+                <Text>{WORK_TYPE_DICT[work.type].es}</Text>
               </View>
             </View>
             <View style={styles.companyDuration}>
-              <Text>2021 - 2024</Text>
+              <Text>{formatRangeDateString(work.startDate, work.endDate)}</Text>
             </View>
           </View>
           <View style={styles.positionsContainer}>
-            <Text style={styles.positions}>Senior Full Stack Developer</Text>
-            <Text style={styles.description}>
-              Created Android mobile apps and led teams for companies like
-              Vision Media, DKMS, or AAA. Built live streaming application for
-              Evercast from scratch. Technologies: Android, Kotlin, React,
-              TypeScript, GraphQL
-            </Text>
+            <Text style={styles.positions}>{work.position}</Text>
+            {work.description && (
+              <Text style={styles.description}>{work.description}</Text>
+            )}
           </View>
         </View>
       ))}

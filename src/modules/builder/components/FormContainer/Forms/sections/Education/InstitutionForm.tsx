@@ -1,11 +1,13 @@
-import { Work } from '@/modules/builder/types'
+import { Institution } from '@/modules/builder/types'
 import { SimpleModal } from '@/shared/components/modals'
 import { useFormik } from 'formik'
-import { initialValuesWork } from '@/modules/builder/components/FormContainer/validation/initialValues'
-import { workSchema } from '@/modules/builder/components/FormContainer/validation/schema'
+import { initialValuesInstitution } from '@/modules/builder/components/FormContainer/validation/initialValues'
+import {
+  institutionSchema,
+  workSchema,
+} from '@/modules/builder/components/FormContainer/validation/schema'
 import { generateId } from '@/shared/utils/generate'
 import {
-  Autocomplete,
   DatePicker,
   SimpleInput,
   SimpleTextArea,
@@ -16,35 +18,33 @@ import { useEffect } from 'react'
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
-import workTypes from '@/shared/data/workTypes.json'
-import { WORK_TYPE_DICT } from '@/shared/constants'
 
 interface Props {
-  data?: Work
+  data?: Institution
   isOpen: boolean
   onClose: () => void
-  addNewWork: (work: Work) => void
-  updateDataWork: (work: Work) => void
+  addNewInstitution: (institution: Institution) => void
+  updateDataInstitution: (institution: Institution) => void
 }
 
-const WorkForm = ({
+const InstitutionForm = ({
   data,
   onClose,
   isOpen,
-  addNewWork,
-  updateDataWork,
+  addNewInstitution,
+  updateDataInstitution,
 }: Props) => {
-  const initialValues = { ...initialValuesWork, key: generateId() }
-  const formik = useFormik<Work>({
+  const initialValues = { ...initialValuesInstitution, key: generateId() }
+  const formik = useFormik<Institution>({
     initialValues,
-    validationSchema: workSchema,
+    validationSchema: institutionSchema,
     onSubmit: async (values) => {
       const formatValues = trimObjectValues(values)
       if (!data) {
-        addNewWork(formatValues)
+        addNewInstitution(formatValues)
       }
       if (data) {
-        updateDataWork(formatValues)
+        updateDataInstitution(formatValues)
       }
       formik.resetForm()
       onClose()
@@ -77,29 +77,11 @@ const WorkForm = ({
         gap={2}
       >
         <SimpleInput
-          name='companyName'
-          label='Nombre de la organización'
-          value={formik.values.companyName}
-          errorMsg={formik.errors?.companyName}
+          name='educationName'
+          label='Nombre de la institución'
+          value={formik.values.educationName}
+          errorMsg={formik.errors?.educationName}
           onChange={formik.handleChange}
-        />
-        <SimpleInput
-          name='position'
-          label='Cargo'
-          value={formik.values.position}
-          errorMsg={formik.errors?.position}
-          onChange={formik.handleChange}
-        />
-        <Autocomplete
-          label='Tipo'
-          value={formik.values.type}
-          onChange={(item) => item && formik.setFieldValue('type', item.value)}
-          list={workTypes.map((type: string) => ({
-            label: WORK_TYPE_DICT[type].es,
-            value: type,
-          }))}
-          isSearchable={false}
-          errorMsg={formik.errors.type}
         />
         <SimpleTextArea
           name='description'
@@ -109,7 +91,7 @@ const WorkForm = ({
           onChange={formik.handleChange}
         />
         <SwitchInput
-          label='¿Estás trabajando actualmente aquí?'
+          label='¿Estás estudiando actualmente aquí?'
           isChecked={formik.values?.isCurrent}
           name='isCurrent'
           onChange={formik.handleChange}
@@ -157,4 +139,4 @@ const WorkForm = ({
   )
 }
 
-export default WorkForm
+export default InstitutionForm

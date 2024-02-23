@@ -8,17 +8,23 @@ import {
   initialValuesExperience,
   initialValuesAbout,
   initialValuesPresentation,
+  EducationFrom,
+  initialValuesEducation,
 } from './components/FormContainer/validation/initialValues'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
+import { Language, Templates } from './types'
 
 interface State {
-  templateSelected: 'BASIC'
+  templateSelected: Templates
+  language: Language
   presentationData: PresentationFrom
   aboutData: AboutFrom
   experienceData: ExperienceFrom
+  educationData: EducationFrom
   setPresentationData: (presentation: PresentationFrom) => void
   setAboutData: (about: AboutFrom) => void
   setExperienceData: (experience: ExperienceFrom) => void
+  setEducationData: (education: EducationFrom) => void
   resetData: (type: string) => void
 }
 
@@ -28,9 +34,11 @@ export const useBuilderStore = create<State>()(
       (set) => {
         return {
           templateSelected: 'BASIC',
+          language: 'ES',
           presentationData: initialValuesPresentation,
           aboutData: initialValuesAbout,
           experienceData: initialValuesExperience,
+          educationData: initialValuesEducation,
           setPresentationData: (presentation) => {
             const presentationFormat = trimObjectValues(presentation)
             const isUpdate = presentationFormat.isUpdate
@@ -58,13 +66,28 @@ export const useBuilderStore = create<State>()(
             })
           },
           setExperienceData: (data) => {
-            const dataFormat = trimObjectValues(data)
+            const { works, ...rest } = data
+            const dataFormat = trimObjectValues(rest)
             const isUpdate = dataFormat.isUpdate
             set({
-              experienceData: { ...dataFormat, isUpdate: true },
+              experienceData: { works, ...rest, isUpdate: true },
             })
             showToast({
               msg: `"Experiencia" ${
+                isUpdate ? 'actualizada' : 'agregada'
+              } correctamente 🎉`,
+              type: 'success',
+            })
+          },
+          setEducationData: (data) => {
+            const { institutions, ...rest } = data
+            const dataFormat = trimObjectValues(rest)
+            const isUpdate = dataFormat.isUpdate
+            set({
+              educationData: { institutions, ...rest, isUpdate: true },
+            })
+            showToast({
+              msg: `"Educación" ${
                 isUpdate ? 'actualizada' : 'agregada'
               } correctamente 🎉`,
               type: 'success',

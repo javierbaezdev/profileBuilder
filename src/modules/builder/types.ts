@@ -1,3 +1,6 @@
+export type Language = 'ES' | 'EN'
+export type Templates = 'BASIC'
+
 export interface Presentation {
   fullName: string
   description?: string
@@ -29,8 +32,9 @@ export interface Institution {
   key: string
   educationName: string
   description?: string
-  startYear: string
-  endYear?: string
+  startDate: string
+  endDate?: string
+  isCurrent: boolean
 }
 
 export interface Education {

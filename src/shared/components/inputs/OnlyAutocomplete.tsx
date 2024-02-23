@@ -28,7 +28,7 @@ const OnlyAutocomplete = ({
   size,
   isSearchable,
 }: PropsOnlyAutocomplete) => {
-  const SIZE = size ? size : undefined
+  const SIZE = size ? size : '40px'
   return (
     <Select
       className='basic-single'
@@ -46,7 +46,7 @@ const OnlyAutocomplete = ({
           ...baseStyles,
           background: 'Transparent',
           '&:hover': { borderColor: COMBINED_COLORS.zinc[700] },
-          border: `1px solid ${COMBINED_COLORS.zinc[600]}`,
+          border: `1px solid ${COMBINED_COLORS.zinc[200]}`,
           boxShadow: 'none',
           borderRadius: '0.375rem',
           fontSize: '0.7rem',
@@ -79,6 +79,7 @@ const OnlyAutocomplete = ({
         menuList: (base) => ({
           ...base,
           padding: 0,
+          background: COMBINED_COLORS.zinc[600],
         }),
         noOptionsMessage: (base) => ({
           ...base,
@@ -92,7 +93,7 @@ const OnlyAutocomplete = ({
             ? COMBINED_COLORS.zinc[700]
             : undefined,
           '&:hover': {
-            backgroundColor: COMBINED_COLORS.zinc[600],
+            backgroundColor: COMBINED_COLORS.zinc[700],
             cursor: 'pointer',
           },
         }),

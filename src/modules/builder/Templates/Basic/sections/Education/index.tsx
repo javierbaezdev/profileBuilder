@@ -1,27 +1,38 @@
 import { Text, View } from '@react-pdf/renderer'
 import { styles } from './styles'
+import { EducationFrom } from '@/modules/builder/components/FormContainer/validation/initialValues'
+import { formatRangeDateString } from '@/shared/utils/format'
 
-const Education = () => {
+interface Props {
+  educationData: EducationFrom
+}
+
+const Education = ({ educationData }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Education</Text>
-      {Array.from({ length: 20 }, (_, index) => (
+      {educationData?.institutions?.map((institution) => (
         <View style={styles.card}>
           <View style={styles.header}>
             <View style={styles.institutionContainer}>
               <Text style={styles.institutionName}>
-                {index + 1} Wrocław University of Technology
+                {institution.educationName}
               </Text>
             </View>
             <View style={styles.institutionDuration}>
-              <Text>2007 - 2010</Text>
+              <Text>
+                {formatRangeDateString(
+                  institution.startDate,
+                  institution.endDate
+                )}
+              </Text>
             </View>
           </View>
-          <View style={styles.descriptionContainer}>
-            <Text style={styles.description}>
-              Bachelor's Degree in Control systems engineering and Robotics
-            </Text>
-          </View>
+          {institution.description && (
+            <View style={styles.descriptionContainer}>
+              <Text style={styles.description}>{institution.description}</Text>
+            </View>
+          )}
         </View>
       ))}
     </View>

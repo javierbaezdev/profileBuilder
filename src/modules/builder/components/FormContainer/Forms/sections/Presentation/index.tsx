@@ -28,7 +28,9 @@ const PresentationForm = () => {
   })
 
   useEffect(() => {
-    formik.setValues(presentationData)
+    if (presentationData && presentationData.isUpdate) {
+      formik.setValues(presentationData)
+    }
   }, [presentationData])
 
   return (

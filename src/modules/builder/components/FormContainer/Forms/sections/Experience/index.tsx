@@ -46,6 +46,18 @@ const ExperienceForm = () => {
     formik.setFieldValue('works', newWorks)
   }
 
+  const updateDataWork = (work: Work) => {
+    const copyWorks = cloneDeep(formik.values.works)
+
+    const indexCurrent = copyWorks.findIndex((item) => item.key === work.key)
+
+    if (indexCurrent > -1) {
+      copyWorks[indexCurrent] = work
+    }
+
+    formik.setFieldValue('works', copyWorks)
+  }
+
   const updateWork = (work: Work) => {
     setCurrentWorkSelected(work)
     onToggle()
@@ -71,7 +83,10 @@ const ExperienceForm = () => {
         direction='column'
         gap={2}
       >
-        <Text textAlign='center'>
+        <Text
+          textAlign='center'
+          fontSize={18}
+        >
           Listado de trabajos/experiencias laborales
         </Text>
         {formik.values?.works?.length === 0 && (
@@ -84,7 +99,7 @@ const ExperienceForm = () => {
         <Flex
           direction='column'
           gap={2}
-          px={10}
+          px={5}
         >
           {formik.values?.works?.map((work) => (
             <WorkItem
@@ -95,7 +110,6 @@ const ExperienceForm = () => {
             />
           ))}
           <SimpleButton
-            variant='outline'
             rightIcon={<CirclePlus />}
             onClick={() => addNewWorkOpen()}
             size='xs'
@@ -121,6 +135,7 @@ const ExperienceForm = () => {
           onClose={onToggle}
           data={currentWorkSelected}
           addNewWork={addNewWork}
+          updateDataWork={updateDataWork}
         />
       )}
     </Flex>

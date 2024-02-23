@@ -10,12 +10,14 @@ const Builder = () => {
         md: 'repeat(1, 1fr)',
       }}
       w='full'
+      h='full'
       gap={2}
     >
       <GridItem
         colSpan={{
           lg: 2,
         }}
+
         /* order={{ base: 2, lg: 1 }} */
       >
         <FormContainer />

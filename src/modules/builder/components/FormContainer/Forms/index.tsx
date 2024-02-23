@@ -19,6 +19,7 @@ const Forms = () => {
       p={2}
       direction='column'
       gap={2}
+      overflow='auto'
     >
       <AccordionContainer title={'Presentación'}>
         <Presentation />

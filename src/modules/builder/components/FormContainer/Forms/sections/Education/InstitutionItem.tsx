@@ -1,17 +1,21 @@
-import { Work } from '@/modules/builder/types'
+import { Institution } from '@/modules/builder/types'
 import { SimpleIconButton } from '@/shared/components/buttons'
-import { GRADIENTS_BG, WORK_TYPE_DICT } from '@/shared/constants'
-import { Briefcase, Calendar, EditCircle, Trash } from '@/shared/icons'
+import { GRADIENTS_BG } from '@/shared/constants'
+import { Calendar, EditCircle, Trash } from '@/shared/icons'
 import { formatDate } from '@/shared/utils/format'
-import { Badge, Flex, Icon, Text } from '@chakra-ui/react'
+import { Flex, Icon, Text } from '@chakra-ui/react'
 
 interface Props {
-  data: Work
-  updateWork: (work: Work) => void
-  deleteWork: (work: Work) => void
+  data: Institution
+  updateInstitution: (work: Institution) => void
+  deleteInstitution: (work: Institution) => void
 }
 
-const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
+const InstitutionItem = ({
+  data,
+  updateInstitution,
+  deleteInstitution,
+}: Props) => {
   return (
     <Flex
       direction='column'
@@ -32,18 +36,11 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
         justify='space-between'
         align='center'
       >
-        <Text noOfLines={[1]}>{data?.companyName}</Text>
+        <Text noOfLines={[1]}>{data?.educationName}</Text>
         <Flex
           gap={2}
           align='center'
         >
-          <Badge
-            colorScheme={WORK_TYPE_DICT[data.type].colorSchema}
-            borderRadius={4}
-          >
-            {WORK_TYPE_DICT[data.type].es}
-          </Badge>
-
           <SimpleIconButton
             icon={<EditCircle />}
             aria-label='edit'
@@ -51,7 +48,7 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
             color='zinc.50'
             _hover={{ bg: 'zinc.800' }}
             size='xs'
-            onClick={() => updateWork(data)}
+            onClick={() => updateInstitution(data)}
           />
           <SimpleIconButton
             icon={<Trash />}
@@ -60,7 +57,7 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
             color='zinc.50'
             _hover={{ bg: 'zinc.800' }}
             size='xs'
-            onClick={() => deleteWork(data)}
+            onClick={() => deleteInstitution(data)}
           />
         </Flex>
       </Flex>
@@ -101,17 +98,6 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
         fontSize={16}
         direction='column'
       >
-        <Flex
-          justify='center'
-          align='center'
-          gap={2}
-        >
-          <Icon fontSize={20}>
-            <Briefcase />
-          </Icon>
-          <Text as='u'>{data?.position}</Text>
-        </Flex>
-
         {data?.description && (
           <Text noOfLines={[1, 2]}>{data?.description}</Text>
         )}
@@ -120,4 +106,4 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
   )
 }
 
-export default WorkItem
+export default InstitutionItem

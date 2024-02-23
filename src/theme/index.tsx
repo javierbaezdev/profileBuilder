@@ -47,7 +47,7 @@ const scrollbarStyles = (props: SystemStyleObject) => ({
   '&::-webkit-scrollbar-thumb': {
     backgroundColor: mode(
       COMBINED_COLORS.zinc[100],
-      COMBINED_COLORS.zinc[950]
+      COMBINED_COLORS.zinc[700]
     )(props),
     borderRadius: '9px',
     border: '4px solid transparent',

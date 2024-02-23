@@ -28,10 +28,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   institutionContainer: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    gap: 4,
   },
   institutionName: {
     fontSize: 14,

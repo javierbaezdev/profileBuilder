@@ -28,7 +28,7 @@ export const WORK_TYPE_DICT: Record<string, any> = {
   REMOTE: { colorSchema: 'purple', es: 'Remoto' },
   IN_PERSON: { colorSchema: 'orange', es: 'Presencial' },
   FREELANCE: { colorSchema: 'green', es: 'Independiente' },
-  MIXED: { colorSchema: 'cian', es: 'Combinado' },
+  MIXED: { colorSchema: 'javaScript', es: 'Combinado' },
 }
 
 export const GRADIENTS_BG = {

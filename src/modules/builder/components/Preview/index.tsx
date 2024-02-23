@@ -16,9 +16,13 @@ const FAKE_TIME_LOADING = 2000
 
 const Preview = () => {
   const [fakeLoading, setFakeLoading] = useState(true)
-  const { presentationData, aboutData, templateSelected } = useBuilderStore(
-    (store) => store
-  )
+  const {
+    presentationData,
+    aboutData,
+    experienceData,
+    educationData,
+    templateSelected,
+  } = useBuilderStore((store) => store)
 
   useEffect(() => {
     if (!fakeLoading) {
@@ -28,7 +32,7 @@ const Preview = () => {
     setTimeout(() => {
       setFakeLoading(false)
     }, FAKE_TIME_LOADING)
-  }, [presentationData, aboutData])
+  }, [presentationData, aboutData, experienceData, educationData])
 
   return (
     <Flex
@@ -53,7 +57,12 @@ const Preview = () => {
           }}
           showToolbar={false}
         >
-          {TEMPLATE_DICT[templateSelected](presentationData, aboutData)}
+          {TEMPLATE_DICT[templateSelected](
+            presentationData,
+            aboutData,
+            experienceData,
+            educationData
+          )}
         </PDFViewer>
         {fakeLoading && (
           <Flex

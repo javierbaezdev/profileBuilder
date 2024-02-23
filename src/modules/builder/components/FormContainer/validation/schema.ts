@@ -28,8 +28,13 @@ export const workSchema = Yup.object().shape({
   companyName: Yup.string()
     .max(30, SCHEMA_MESSAGES.maxCha + 30)
     .required(SCHEMA_MESSAGES.required),
+  isCurrent: Yup.boolean(),
   startDate: Yup.string().required(SCHEMA_MESSAGES.required),
-  endDate: Yup.string(),
+  endDate: Yup.string().when('isCurrent', {
+    is: false,
+    then: Yup.string().required(SCHEMA_MESSAGES.required),
+    otherwise: Yup.string(),
+  }),
   type: Yup.string().required(SCHEMA_MESSAGES.required),
 })
 
@@ -39,18 +44,23 @@ export const experienceSchema = Yup.object().shape({
   isUpdate: Yup.boolean(),
 })
 
+export const institutionSchema = Yup.object().shape({
+  key: Yup.string().required(SCHEMA_MESSAGES.required),
+  educationName: Yup.string().required(SCHEMA_MESSAGES.required),
+  description: Yup.string(),
+  isCurrent: Yup.boolean(),
+  startDate: Yup.string().required(SCHEMA_MESSAGES.required),
+  endDate: Yup.string().when('isCurrent', {
+    is: false,
+    then: Yup.string().required(SCHEMA_MESSAGES.required),
+    otherwise: Yup.string(),
+  }),
+})
+
 export const educationSchema = Yup.object().shape({
-  institutions: Yup.array()
-    .of(
-      Yup.object().shape({
-        key: Yup.string().required(SCHEMA_MESSAGES.required),
-        educationName: Yup.string().required(SCHEMA_MESSAGES.required),
-        description: Yup.string(),
-        startYear: Yup.string().required(SCHEMA_MESSAGES.required),
-        endYear: Yup.string(),
-      })
-    )
-    .min(1, SCHEMA_MESSAGES.required),
+  institutions: Yup.array().of(institutionSchema),
+  isRequiredEducation: Yup.boolean(),
+  isUpdate: Yup.boolean(),
 })
 
 export const skillsSchema = Yup.object().shape({
