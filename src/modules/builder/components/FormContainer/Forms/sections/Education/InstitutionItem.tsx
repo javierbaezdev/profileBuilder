@@ -1,8 +1,8 @@
 import { Institution } from '@/modules/builder/types'
 import { SimpleIconButton } from '@/shared/components/buttons'
-import { GRADIENTS_BG } from '@/shared/constants'
+import { GET_IS_SMALL_SCREAM, GRADIENTS_BG } from '@/shared/constants'
 import { Calendar, EditCircle, Trash } from '@/shared/icons'
-import { formatDate } from '@/shared/utils/format'
+import { formatRangeDateString } from '@/shared/utils/format'
 import { Flex, Icon, Text } from '@chakra-ui/react'
 
 interface Props {
@@ -16,6 +16,7 @@ const InstitutionItem = ({
   updateInstitution,
   deleteInstitution,
 }: Props) => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
     <Flex
       direction='column'
@@ -69,24 +70,15 @@ const InstitutionItem = ({
         bg='zinc.900'
         borderRadius={4}
         px={2}
+        direction={!isSmallScream ? 'row' : 'column'}
       >
-        <Icon fontSize={20}>
-          <Calendar />
-        </Icon>
-        <Text>
-          <strong>Inicio: </strong>
-          {formatDate(data.startDate)}
-        </Text>
-        {!data?.isCurrent && data.endDate ? (
-          <Text>
-            <strong>Hasta: </strong>
-            {formatDate(data.endDate)}
-          </Text>
-        ) : (
-          <Text>
-            <strong>Hasta: </strong>La actualidad
-          </Text>
-        )}
+        <Flex gap={2}>
+          <Icon fontSize={20}>
+            <Calendar />
+          </Icon>
+          <Text fontWeight='bold'>Periodo:</Text>
+        </Flex>
+        <Text>{formatRangeDateString(data.startDate, data.endDate)}</Text>
       </Flex>
       {/* ---- */}
       <Flex

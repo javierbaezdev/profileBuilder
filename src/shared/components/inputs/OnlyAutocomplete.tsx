@@ -52,6 +52,7 @@ const OnlyAutocomplete = ({
           fontSize: '0.7rem',
           height: SIZE,
           minHeight: SIZE,
+          opacity: isDisabled ? 0.5 : 1,
         }),
         singleValue: (base) => ({
           ...base,

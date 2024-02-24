@@ -1,17 +1,21 @@
 import { Text, View } from '@react-pdf/renderer'
 import { styles } from './styles'
 import { ExperienceFrom } from '@/modules/builder/components/FormContainer/validation/initialValues'
-import { WORK_TYPE_DICT } from '@/shared/constants'
+import { LANGUAGE_DICT, WORK_TYPE_DICT } from '@/shared/constants'
 import { formatRangeDateString } from '@/shared/utils/format'
+import { Language } from '@/modules/builder/types'
 
 interface Props {
+  language: Language
   experienceData: ExperienceFrom
 }
 
-const Experience = ({ experienceData }: Props) => {
+const Experience = ({ experienceData, language }: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Work Experience</Text>
+      <Text style={styles.title}>
+        {LANGUAGE_DICT[language]?.basic.experience.title}
+      </Text>
       {experienceData?.works?.map((work) => (
         <View style={styles.card}>
           <View style={styles.header}>

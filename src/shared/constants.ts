@@ -1,3 +1,4 @@
+import { Language } from '@/modules/builder/types'
 import { useColorMode } from '@chakra-ui/react'
 import { useMediaQuery } from 'react-responsive'
 
@@ -29,6 +30,53 @@ export const WORK_TYPE_DICT: Record<string, any> = {
   IN_PERSON: { colorSchema: 'orange', es: 'Presencial' },
   FREELANCE: { colorSchema: 'green', es: 'Independiente' },
   MIXED: { colorSchema: 'javaScript', es: 'Combinado' },
+}
+
+export const LANGUAGE_DICT: Record<Language, any> = {
+  ES: {
+    basic: {
+      presentation: {
+        title: 'Presentación',
+      },
+      about: {
+        title: 'Acerca de mi',
+      },
+      experience: {
+        title: 'Experiencia',
+      },
+      education: {
+        title: 'Educacion',
+      },
+      skills: {
+        title: 'Habilidades',
+      },
+      contact: {
+        title: 'Contacto',
+      },
+    },
+  },
+  EN: {
+    basic: {
+      presentation: {
+        title: 'Presentation',
+      },
+      about: {
+        title: 'About me',
+      },
+      experience: {
+        title: 'Experience',
+      },
+      education: {
+        title: 'Education',
+      },
+      skills: {
+        title: 'Skills',
+      },
+      contact: {
+        title: 'Contact',
+      },
+    },
+  },
 }
 
 export const GRADIENTS_BG = {

@@ -14,8 +14,10 @@ import { Message } from '@/shared/components'
 import { cloneDeep } from '@/shared/utils/cloneDeep'
 import InstitutionItem from './InstitutionItem'
 import InstitutionForm from './InstitutionForm'
+import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 
 const EducationForm = () => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   const { isOpen, onToggle } = useDisclosure()
   const [currentInstitutionSelected, setCurrentInstitutionSelected] = useState<
     Institution | undefined
@@ -101,7 +103,7 @@ const EducationForm = () => {
         <Flex
           direction='column'
           gap={2}
-          px={5}
+          px={!isSmallScream ? 5 : 2}
         >
           {formik.values?.institutions?.map((institution) => (
             <InstitutionItem

@@ -14,8 +14,10 @@ import WorkForm from './WorkForm'
 import WorkItem from './WorkItem'
 import { Message } from '@/shared/components'
 import { cloneDeep } from '@/shared/utils/cloneDeep'
+import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 
 const ExperienceForm = () => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   const { isOpen, onToggle } = useDisclosure()
   const [currentWorkSelected, setCurrentWorkSelected] = useState<
     Work | undefined
@@ -99,7 +101,7 @@ const ExperienceForm = () => {
         <Flex
           direction='column'
           gap={2}
-          px={5}
+          px={!isSmallScream ? 5 : 2}
         >
           {formik.values?.works?.map((work) => (
             <WorkItem

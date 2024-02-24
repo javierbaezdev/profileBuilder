@@ -2,10 +2,7 @@ import { Institution } from '@/modules/builder/types'
 import { SimpleModal } from '@/shared/components/modals'
 import { useFormik } from 'formik'
 import { initialValuesInstitution } from '@/modules/builder/components/FormContainer/validation/initialValues'
-import {
-  institutionSchema,
-  workSchema,
-} from '@/modules/builder/components/FormContainer/validation/schema'
+import { institutionSchema } from '@/modules/builder/components/FormContainer/validation/schema'
 import { generateId } from '@/shared/utils/generate'
 import {
   DatePicker,

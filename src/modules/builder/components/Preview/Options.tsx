@@ -4,14 +4,15 @@ import { SimpleButton, SimpleIconButton } from '@/shared/components/buttons'
 import { TEMPLATE_DICT } from '@/modules/builder/Templates/getTemplate'
 import { OnlyAutocomplete } from '@/shared/components/inputs'
 import templatesOptions from '@/shared/data/templatesOptions.json'
+import languages from '@/shared/data/languages.json'
 import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 import { Download } from '@/shared/icons'
 import { useBuilderStore } from '../../store'
+import { Language } from '../../types'
 
 const Options = () => {
-  const { presentationData, templateSelected } = useBuilderStore(
-    (store) => store
-  )
+  const { presentationData, templateSelected, onChangeLanguage, language } =
+    useBuilderStore((store) => store)
   const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
     <Flex
@@ -34,10 +35,25 @@ const Options = () => {
       >
         <Flex
           gap={2}
-          w={{ lg: '50%' }}
+          w={{ lg: '100%' }}
           justify='flex-end'
           align='center'
         >
+          <Flex>
+            <OnlyAutocomplete
+              label='idioma'
+              value={language}
+              onChange={(item) => {
+                if (item) {
+                  const valueToPass = item.value as Language
+                  onChangeLanguage(valueToPass)
+                }
+              }}
+              list={languages}
+              size={25}
+              isSearchable={false}
+            />
+          </Flex>
           <Flex>
             <OnlyAutocomplete
               label='plantilla'
@@ -46,6 +62,7 @@ const Options = () => {
               list={templatesOptions}
               size={25}
               isSearchable={false}
+              isDisabled={true}
             />
           </Flex>
           {!isSmallScream ? (

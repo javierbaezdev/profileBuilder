@@ -1,36 +1,29 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import FormContainer from '@/modules/builder/components/FormContainer'
 import Preview from '@/modules/builder/components/Preview'
+import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 
 const Builder = () => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
-    <Grid
-      templateColumns={{
-        lg: 'repeat(5, 1fr)',
-        md: 'repeat(1, 1fr)',
-      }}
-      w='full'
-      h='full'
+    <Flex
       gap={2}
+      w='full'
+      direction={isSmallScream ? 'column' : 'row'}
     >
-      <GridItem
-        colSpan={{
-          lg: 2,
-        }}
-
-        /* order={{ base: 2, lg: 1 }} */
+      <Box
+        w='full'
+        flex={4}
       >
         <FormContainer />
-      </GridItem>
-      <GridItem
-        colSpan={{
-          lg: 3,
-        }}
-        /* order={{ base: 1, lg: 2 }} */
+      </Box>
+      <Box
+        w='full'
+        flex={6}
       >
         <Preview />
-      </GridItem>
-    </Grid>
+      </Box>
+    </Flex>
   )
 }
 

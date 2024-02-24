@@ -1,8 +1,12 @@
 import { Work } from '@/modules/builder/types'
 import { SimpleIconButton } from '@/shared/components/buttons'
-import { GRADIENTS_BG, WORK_TYPE_DICT } from '@/shared/constants'
+import {
+  GET_IS_SMALL_SCREAM,
+  GRADIENTS_BG,
+  WORK_TYPE_DICT,
+} from '@/shared/constants'
 import { Briefcase, Calendar, EditCircle, Trash } from '@/shared/icons'
-import { formatDate } from '@/shared/utils/format'
+import { formatRangeDateString } from '@/shared/utils/format'
 import { Badge, Flex, Icon, Text } from '@chakra-ui/react'
 
 interface Props {
@@ -12,6 +16,7 @@ interface Props {
 }
 
 const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
     <Flex
       direction='column'
@@ -72,24 +77,15 @@ const WorkItem = ({ data, updateWork, deleteWork }: Props) => {
         bg='zinc.900'
         borderRadius={4}
         px={2}
+        direction={!isSmallScream ? 'row' : 'column'}
       >
-        <Icon fontSize={20}>
-          <Calendar />
-        </Icon>
-        <Text>
-          <strong>Inicio: </strong>
-          {formatDate(data.startDate)}
-        </Text>
-        {!data?.isCurrent && data.endDate ? (
-          <Text>
-            <strong>Hasta: </strong>
-            {formatDate(data.endDate)}
-          </Text>
-        ) : (
-          <Text>
-            <strong>Hasta: </strong>La actualidad
-          </Text>
-        )}
+        <Flex gap={2}>
+          <Icon fontSize={20}>
+            <Calendar />
+          </Icon>
+          <Text fontWeight='bold'>Periodo:</Text>
+        </Flex>
+        <Text>{formatRangeDateString(data.startDate, data.endDate)}</Text>
       </Flex>
       {/* ---- */}
       <Flex

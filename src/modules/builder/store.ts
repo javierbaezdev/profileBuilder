@@ -21,6 +21,7 @@ interface State {
   aboutData: AboutFrom
   experienceData: ExperienceFrom
   educationData: EducationFrom
+  onChangeLanguage: (language: Language) => void
   setPresentationData: (presentation: PresentationFrom) => void
   setAboutData: (about: AboutFrom) => void
   setExperienceData: (experience: ExperienceFrom) => void
@@ -31,7 +32,7 @@ interface State {
 export const useBuilderStore = create<State>()(
   devtools(
     persist(
-      (set) => {
+      (set, get) => {
         return {
           templateSelected: 'BASIC',
           language: 'ES',
@@ -39,6 +40,19 @@ export const useBuilderStore = create<State>()(
           aboutData: initialValuesAbout,
           experienceData: initialValuesExperience,
           educationData: initialValuesEducation,
+          onChangeLanguage: (lgs) => {
+            const { language } = get()
+
+            if (language !== lgs) {
+              set({
+                language: lgs,
+              })
+              showToast({
+                msg: `Idioma actualizado correctamente 🎉`,
+                type: 'success',
+              })
+            }
+          },
           setPresentationData: (presentation) => {
             const presentationFormat = trimObjectValues(presentation)
             const isUpdate = presentationFormat.isUpdate

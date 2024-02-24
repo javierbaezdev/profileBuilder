@@ -17,6 +17,7 @@ const FAKE_TIME_LOADING = 2000
 const Preview = () => {
   const [fakeLoading, setFakeLoading] = useState(true)
   const {
+    language,
     presentationData,
     aboutData,
     experienceData,
@@ -32,7 +33,7 @@ const Preview = () => {
     setTimeout(() => {
       setFakeLoading(false)
     }, FAKE_TIME_LOADING)
-  }, [presentationData, aboutData, experienceData, educationData])
+  }, [language, presentationData, aboutData, experienceData, educationData])
 
   return (
     <Flex
@@ -58,6 +59,7 @@ const Preview = () => {
           showToolbar={false}
         >
           {TEMPLATE_DICT[templateSelected](
+            language,
             presentationData,
             aboutData,
             experienceData,

@@ -34,12 +34,12 @@ const Presentation = ({ presentationData }: Props) => {
           />
         </View>
       </View>
-      {presentationData.imgUrl && (
+      {presentationData?.imgUrl && (
         <View style={styles.boxImage}>
           <Image source={presentationData.imgUrl} />
         </View>
       )}
-      {!presentationData.isUpdate && (
+      {!presentationData?.isUpdate && (
         <View style={styles.boxImage}>
           <Image source={defaultImg} />
         </View>
