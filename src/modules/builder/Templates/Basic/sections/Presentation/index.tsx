@@ -4,7 +4,7 @@ import { PresentationFrom } from '@/modules/builder/components/FormContainer/val
 import { NO_DATA } from '@/shared/constants'
 import { CustomText } from '@/modules/builder/Templates/components'
 import { MapPinFilled } from '@/modules/builder/Templates/components/icons'
-import defaultImg from '@/assets/CAT.jpg'
+import defaultImg from '@/assets/cat.jpg'
 
 interface Props {
   presentationData: PresentationFrom
