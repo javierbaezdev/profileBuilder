@@ -43,7 +43,7 @@ const ContactsForm = () => {
   const addNewContact = (contact: ContactItem) => {
     const copyContacts = cloneDeep(formik.values.contacts)
 
-    const newContact = [contact, ...copyContacts]
+    const newContact = [...copyContacts, contact]
 
     formik.setFieldValue('contacts', newContact)
   }
@@ -113,6 +113,7 @@ const ContactsForm = () => {
               p={2}
               borderRadius={8}
               w='full'
+              direction='column'
             >
               {formik.values?.contacts?.map((contact) => (
                 <ContactItemComponent
