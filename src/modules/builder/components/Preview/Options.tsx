@@ -76,7 +76,15 @@ const Options = () => {
           </Flex>
           {!isSmallScream ? (
             <PDFDownloadLink
-              document={TEMPLATE_DICT[templateSelected](presentationData)}
+              document={TEMPLATE_DICT[templateSelected](
+                language,
+                presentationData,
+                aboutData,
+                experienceData,
+                educationData,
+                skillsData,
+                contactsData
+              )}
               fileName='cv'
             >
               {({ loading }) => (
