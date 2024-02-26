@@ -11,8 +11,17 @@ import { useBuilderStore } from '../../store'
 import { Language } from '../../types'
 
 const Options = () => {
-  const { presentationData, templateSelected, onChangeLanguage, language } =
-    useBuilderStore((store) => store)
+  const {
+    language,
+    presentationData,
+    aboutData,
+    experienceData,
+    educationData,
+    skillsData,
+    contactsData,
+    templateSelected,
+    onChangeLanguage,
+  } = useBuilderStore((store) => store)
   const isSmallScream = GET_IS_SMALL_SCREAM()
   return (
     <Flex
@@ -84,7 +93,15 @@ const Options = () => {
             </PDFDownloadLink>
           ) : (
             <PDFDownloadLink
-              document={TEMPLATE_DICT['BASIC']}
+              document={TEMPLATE_DICT['BASIC'](
+                language,
+                presentationData,
+                aboutData,
+                experienceData,
+                educationData,
+                skillsData,
+                contactsData
+              )}
               fileName='cv'
             >
               {({ loading }) => (
