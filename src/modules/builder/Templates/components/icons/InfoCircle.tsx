@@ -1,5 +1,5 @@
 import { COMBINED_COLORS } from '@/theme/combinedColors'
-import { Svg, Path } from '@react-pdf/renderer'
+import { Path, Svg } from '@react-pdf/renderer'
 
 interface Props {
   w?: string
@@ -8,21 +8,21 @@ interface Props {
   stroke?: string
 }
 
-const MapPinFilled = ({ w, h, color, stroke }: Props) => {
+const InfoCircle = ({ w, h, color, stroke }: Props) => {
   const defaultProps = {
-    w: w || 12,
-    h: h || 12,
+    w: w || 20,
+    h: h || 20,
     stroke: stroke || COMBINED_COLORS.zinc[200],
     color: color || COMBINED_COLORS.zinc[600],
   }
-
   return (
     <Svg
       width={defaultProps.w}
       height={defaultProps.h}
       viewBox='0 0 24 24'
+      strokeWidth='1.5'
       stroke={defaultProps.stroke}
-      fill='none'
+      fill={defaultProps.color}
     >
       <Path
         stroke='none'
@@ -30,7 +30,7 @@ const MapPinFilled = ({ w, h, color, stroke }: Props) => {
         fill='none'
       />
       <Path
-        d='M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z'
+        d='M12 2c5.523 0 10 4.477 10 10a10 10 0 0 1 -19.995 .324l-.005 -.324l.004 -.28c.148 -5.393 4.566 -9.72 9.996 -9.72zm.01 13l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -8a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z'
         strokeWidth='0'
         fill={defaultProps.color}
       />
@@ -38,4 +38,4 @@ const MapPinFilled = ({ w, h, color, stroke }: Props) => {
   )
 }
 
-export default MapPinFilled
+export default InfoCircle

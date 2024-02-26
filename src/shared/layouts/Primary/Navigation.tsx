@@ -29,7 +29,13 @@ const Navigation = () => {
   return (
     <>
       <Flex>
-        {!isSmallScream && nav.map((navItem) => <NavItem nav={navItem} />)}
+        {!isSmallScream &&
+          nav.map((navItem) => (
+            <NavItem
+              key={navItem.label}
+              nav={navItem}
+            />
+          ))}
         {isSmallScream && (
           <SimpleIconButton
             icon={<MenuDeep />}
@@ -66,7 +72,10 @@ const Navigation = () => {
               />
             </Flex>
             {nav.map((navItem) => (
-              <NavItem nav={navItem} />
+              <NavItem
+                key={navItem.label}
+                nav={navItem}
+              />
             ))}
           </Flex>
         </SimpleDrawer>

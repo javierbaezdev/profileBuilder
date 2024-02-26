@@ -4,6 +4,8 @@ import {
   AboutFrom,
   ExperienceFrom,
   EducationFrom,
+  SkillsFrom,
+  ContactFrom,
 } from '@/modules/builder/components/FormContainer/validation/initialValues'
 import { Language } from '../types'
 
@@ -13,7 +15,9 @@ export const TEMPLATE_DICT: Record<string, any> = {
     presentationData: PresentationFrom,
     aboutData: AboutFrom,
     experienceData: ExperienceFrom,
-    educationData: EducationFrom
+    educationData: EducationFrom,
+    skillsData: SkillsFrom,
+    contactsData: ContactFrom
   ) => (
     <Basic
       language={language}
@@ -21,6 +25,8 @@ export const TEMPLATE_DICT: Record<string, any> = {
       aboutData={aboutData}
       experienceData={experienceData}
       educationData={educationData}
+      skillsData={skillsData}
+      contactsData={contactsData}
     />
   ),
 }

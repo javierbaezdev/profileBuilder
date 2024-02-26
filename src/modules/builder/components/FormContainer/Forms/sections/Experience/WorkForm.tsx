@@ -18,6 +18,7 @@ import { DeviceFloppy } from '@/shared/icons'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
 import workTypes from '@/shared/data/workTypes.json'
 import { WORK_TYPE_DICT } from '@/shared/constants'
+import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
 
 interface Props {
   data?: Work
@@ -82,6 +83,7 @@ const WorkForm = ({
           value={formik.values.companyName}
           errorMsg={formik.errors?.companyName}
           onChange={formik.handleChange}
+          placeholder={placeHolders.EXPERIENCE.ORGANIZATION_NAME}
         />
         <SimpleInput
           name='position'
@@ -89,6 +91,7 @@ const WorkForm = ({
           value={formik.values.position}
           errorMsg={formik.errors?.position}
           onChange={formik.handleChange}
+          placeholder={placeHolders.EXPERIENCE.POSITION}
         />
         <Autocomplete
           label='Tipo'
@@ -107,6 +110,7 @@ const WorkForm = ({
           value={formik.values?.description}
           errorMsg={formik.errors?.description}
           onChange={formik.handleChange}
+          placeholder={placeHolders.EXPERIENCE.DESCRIPTION}
         />
         <SwitchInput
           label='¿Estás trabajando actualmente aquí?'

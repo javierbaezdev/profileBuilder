@@ -63,25 +63,31 @@ export const educationSchema = Yup.object().shape({
   isUpdate: Yup.boolean(),
 })
 
+export const skillSchema = Yup.object().shape({
+  key: Yup.string().required(SCHEMA_MESSAGES.required),
+  value: Yup.string()
+    .required(SCHEMA_MESSAGES.required)
+    .max(20, SCHEMA_MESSAGES.maxCha + 20),
+})
+
 export const skillsSchema = Yup.object().shape({
-  skills: Yup.array()
-    .of(
-      Yup.object().shape({
-        key: Yup.string().required(SCHEMA_MESSAGES.required),
-        value: Yup.string().required(SCHEMA_MESSAGES.required),
-      })
-    )
-    .min(1, SCHEMA_MESSAGES.required),
+  skills: Yup.array().of(skillSchema),
+  isRequiredSkills: Yup.boolean(),
+  isUpdate: Yup.boolean(),
 })
 
 export const contactSchema = Yup.object().shape({
-  contacts: Yup.array()
-    .of(
-      Yup.object().shape({
-        key: Yup.string().required(SCHEMA_MESSAGES.required),
-        label: Yup.string().required(SCHEMA_MESSAGES.required),
-        value: Yup.string().required(SCHEMA_MESSAGES.required),
-      })
-    )
-    .min(1, SCHEMA_MESSAGES.required),
+  key: Yup.string().required(SCHEMA_MESSAGES.required),
+  label: Yup.string()
+    .required(SCHEMA_MESSAGES.required)
+    .max(10, SCHEMA_MESSAGES.maxCha + 10),
+  value: Yup.string()
+    .required(SCHEMA_MESSAGES.required)
+    .max(30, SCHEMA_MESSAGES.maxCha + 30),
+})
+
+export const contactsSchema = Yup.object().shape({
+  contacts: Yup.array().of(contactSchema),
+  isRequiredContact: Yup.boolean(),
+  isUpdate: Yup.boolean(),
 })

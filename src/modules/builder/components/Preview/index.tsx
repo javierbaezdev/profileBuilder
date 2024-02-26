@@ -22,6 +22,8 @@ const Preview = () => {
     aboutData,
     experienceData,
     educationData,
+    skillsData,
+    contactsData,
     templateSelected,
   } = useBuilderStore((store) => store)
 
@@ -33,7 +35,15 @@ const Preview = () => {
     setTimeout(() => {
       setFakeLoading(false)
     }, FAKE_TIME_LOADING)
-  }, [language, presentationData, aboutData, experienceData, educationData])
+  }, [
+    language,
+    presentationData,
+    aboutData,
+    experienceData,
+    educationData,
+    skillsData,
+    contactsData,
+  ])
 
   return (
     <Flex
@@ -63,7 +73,9 @@ const Preview = () => {
             presentationData,
             aboutData,
             experienceData,
-            educationData
+            educationData,
+            skillsData,
+            contactsData
           )}
         </PDFViewer>
         {fakeLoading && (

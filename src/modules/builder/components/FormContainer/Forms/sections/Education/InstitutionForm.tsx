@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
+import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
 
 interface Props {
   data?: Institution
@@ -79,6 +80,7 @@ const InstitutionForm = ({
           value={formik.values.educationName}
           errorMsg={formik.errors?.educationName}
           onChange={formik.handleChange}
+          placeholder={placeHolders.EDUCATION.INSTITUTION_NAME}
         />
         <SimpleTextArea
           name='description'
@@ -86,6 +88,7 @@ const InstitutionForm = ({
           value={formik.values?.description}
           errorMsg={formik.errors?.description}
           onChange={formik.handleChange}
+          placeholder={placeHolders.EDUCATION.DESCRIPTION}
         />
         <SwitchInput
           label='¿Estás estudiando actualmente aquí?'

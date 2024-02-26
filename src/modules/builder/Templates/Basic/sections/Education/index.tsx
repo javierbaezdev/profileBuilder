@@ -4,6 +4,7 @@ import { EducationFrom } from '@/modules/builder/components/FormContainer/valida
 import { formatRangeDateString } from '@/shared/utils/format'
 import { Language } from '@/modules/builder/types'
 import { LANGUAGE_DICT } from '@/shared/constants'
+import { MessagePdf } from '../../../components'
 
 interface Props {
   language: Language
@@ -16,8 +17,17 @@ const Education = ({ educationData, language }: Props) => {
       <Text style={styles.title}>
         {LANGUAGE_DICT[language]?.basic.education.title}
       </Text>
+      {educationData?.institutions?.length === 0 && (
+        <MessagePdf
+          msg='Tu lista está vacía'
+          description='Actualmente no hay ningúna institución agregado. Haz clic en "Agregar nueva institución".'
+        />
+      )}
       {educationData?.institutions?.map((institution) => (
-        <View style={styles.card}>
+        <View
+          style={styles.card}
+          key={institution.key}
+        >
           <View style={styles.header}>
             <View style={styles.institutionContainer}>
               <Text style={styles.institutionName}>

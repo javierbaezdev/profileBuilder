@@ -7,8 +7,8 @@ import { Flex, Icon, Text } from '@chakra-ui/react'
 
 interface Props {
   data: Institution
-  updateInstitution: (work: Institution) => void
-  deleteInstitution: (work: Institution) => void
+  updateInstitution: (institution: Institution) => void
+  deleteInstitution: (institution: Institution) => void
 }
 
 const InstitutionItem = ({

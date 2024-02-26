@@ -10,6 +10,7 @@ import { SimpleTextArea } from '@/shared/components/inputs'
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import { useBuilderStore } from '@/modules/builder/store'
+import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
 
 const AboutForm = () => {
   const { aboutData, setAboutData } = useBuilderStore((store) => store)
@@ -37,6 +38,7 @@ const AboutForm = () => {
         value={formik.values?.description}
         errorMsg={formik.errors?.description}
         onChange={formik.handleChange}
+        placeholder={placeHolders.DESCRIPTION_FULL}
       />
       <Flex justify='flex-end'>
         <SimpleButton

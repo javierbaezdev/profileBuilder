@@ -1,0 +1,20 @@
+{
+  "FULL_NAME": "Bigotes Garrazas Digitalino",
+  "DESCRIPTION": "Full Stack Developer: Ágil, curioso y experto en escalada de código. ¡Ronronea con soluciones ingeniosas!",
+  "LOCATION": "Rincón cálido del sótano, junto al servidor principal",
+  "DESCRIPTION_FULL": "Soy un felino tecnológico curioso y ágil, maullando soluciones creativas desde el mundo digital. Siempre listo para abalanzarme sobre nuevos desafíos y explorar los rincones más profundos del código. ¡Prepárate para verme surcar los bits y bytes con elegancia felina!",
+  "EXPERIENCE": {
+    "ORGANIZATION_NAME": "GatoByte Solutions",
+    "POSITION": "Jefe de Desarrollo de Tecnología Purrsonal",
+    "DESCRIPTION": "Maullé liderazgo en desarrollo de soluciones tecnológicas adaptadas, garantizando una experiencia de usuario sin rasguños y funcionalidad a medida."
+  },
+  "EDUCATION": {
+    "INSTITUTION_NAME": "Universidad de las Nueve Vidas",
+    "DESCRIPTION": "Universidad de las Nueve Vidas, donde la enseñanza es tan flexible como las curvas de un gato, y la exploración del conocimiento es tan intrigante como perseguir una bola de estambre."
+  },
+  "SKILL": "Agilidad en la escalada de código",
+  "CONTACT": {
+    "LABEL": "Correo electrónico",
+    "VALUE": "Bigotes@catbyte.com"
+  }
+}

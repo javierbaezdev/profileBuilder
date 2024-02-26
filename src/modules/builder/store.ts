@@ -10,6 +10,10 @@ import {
   initialValuesPresentation,
   EducationFrom,
   initialValuesEducation,
+  SkillsFrom,
+  initialValuesSkills,
+  ContactFrom,
+  initialValuesContacts,
 } from './components/FormContainer/validation/initialValues'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
 import { Language, Templates } from './types'
@@ -21,11 +25,15 @@ interface State {
   aboutData: AboutFrom
   experienceData: ExperienceFrom
   educationData: EducationFrom
+  skillsData: SkillsFrom
+  contactsData: ContactFrom
   onChangeLanguage: (language: Language) => void
   setPresentationData: (presentation: PresentationFrom) => void
   setAboutData: (about: AboutFrom) => void
   setExperienceData: (experience: ExperienceFrom) => void
   setEducationData: (education: EducationFrom) => void
+  setSkillsData: (skill: SkillsFrom) => void
+  setContactsData: (contact: ContactFrom) => void
   resetData: (type: string) => void
 }
 
@@ -40,6 +48,8 @@ export const useBuilderStore = create<State>()(
           aboutData: initialValuesAbout,
           experienceData: initialValuesExperience,
           educationData: initialValuesEducation,
+          skillsData: initialValuesSkills,
+          contactsData: initialValuesContacts,
           onChangeLanguage: (lgs) => {
             const { language } = get()
 
@@ -107,6 +117,34 @@ export const useBuilderStore = create<State>()(
               type: 'success',
             })
           },
+          setSkillsData: (data) => {
+            const { skills, ...rest } = data
+            const dataFormat = trimObjectValues(rest)
+            const isUpdate = dataFormat.isUpdate
+            set({
+              skillsData: { skills, ...rest, isUpdate: true },
+            })
+            showToast({
+              msg: `"Habilidades" ${
+                isUpdate ? 'actualizado' : 'agregado'
+              } correctamente 🎉`,
+              type: 'success',
+            })
+          },
+          setContactsData: (data) => {
+            const { contacts, ...rest } = data
+            const dataFormat = trimObjectValues(rest)
+            const isUpdate = dataFormat.isUpdate
+            set({
+              contactsData: { contacts, ...rest, isUpdate: true },
+            })
+            showToast({
+              msg: `"Contacto" ${
+                isUpdate ? 'actualizado' : 'agregado'
+              } correctamente 🎉`,
+              type: 'success',
+            })
+          },
           resetData: (type) => {
             let message = ''
             if (type === 'PRESENTATION') {
@@ -126,6 +164,24 @@ export const useBuilderStore = create<State>()(
                 experienceData: initialValuesExperience,
               })
               message = `"Experiencia" reseteada correctamente 🎉`
+            }
+            if (type === 'EDUCATION') {
+              set({
+                educationData: initialValuesEducation,
+              })
+              message = `"Educación" reseteada correctamente 🎉`
+            }
+            if (type === 'SKILLS') {
+              set({
+                skillsData: initialValuesSkills,
+              })
+              message = `"Habilidades" reseteada correctamente 🎉`
+            }
+            if (type === 'CONTACTS') {
+              set({
+                contactsData: initialValuesContacts,
+              })
+              message = `"Contacto" reseteado correctamente 🎉`
             }
             showToast({
               msg: message,

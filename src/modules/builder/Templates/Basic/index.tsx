@@ -13,6 +13,8 @@ import {
   AboutFrom,
   ExperienceFrom,
   EducationFrom,
+  SkillsFrom,
+  ContactFrom,
 } from '@/modules/builder/components/FormContainer/validation/initialValues'
 import { Language } from '../../types'
 
@@ -22,6 +24,8 @@ interface props {
   aboutData: AboutFrom
   experienceData: ExperienceFrom
   educationData: EducationFrom
+  skillsData: SkillsFrom
+  contactsData: ContactFrom
 }
 
 const Basic = ({
@@ -30,6 +34,8 @@ const Basic = ({
   aboutData,
   experienceData,
   educationData,
+  skillsData,
+  contactsData,
 }: props) => {
   return (
     <Document>
@@ -50,8 +56,14 @@ const Basic = ({
           educationData={educationData}
           language={language}
         />
-        <Skills language={language} />
-        <Contact language={language} />
+        <Skills
+          skillsData={skillsData}
+          language={language}
+        />
+        <Contact
+          contactsData={contactsData}
+          language={language}
+        />
       </Page>
     </Document>
   )

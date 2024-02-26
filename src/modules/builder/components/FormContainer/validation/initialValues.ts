@@ -1,11 +1,17 @@
-import { About, Institution, Presentation, Work } from '@/modules/builder/types'
+import {
+  About,
+  Institution,
+  Presentation,
+  Work,
+  Skills,
+  SkillsItem,
+  Contact,
+  ContactItem,
+} from '@/modules/builder/types'
 
 export interface PresentationFrom extends Presentation {
   isRequiredPresentation: boolean
   isUpdate: boolean
-  /* 
-  isRequiredSkills: boolean
-  isRequiredContact: boolean */
 }
 
 export interface AboutFrom extends About {
@@ -22,6 +28,16 @@ export interface ExperienceFrom {
 export interface EducationFrom {
   institutions: Institution[]
   isRequiredEducation: boolean
+  isUpdate: boolean
+}
+
+export interface SkillsFrom extends Skills {
+  isRequiredSkills: boolean
+  isUpdate: boolean
+}
+
+export interface ContactFrom extends Contact {
+  isRequiredContact: boolean
   isUpdate: boolean
 }
 
@@ -62,6 +78,17 @@ export const initialValuesInstitution: Institution = {
   description: '',
 }
 
+export const initialValuesSkill: SkillsItem = {
+  key: '',
+  value: '',
+}
+
+export const initialValuesContact: ContactItem = {
+  key: '',
+  value: '',
+  label: '',
+}
+
 export const initialValuesExperience: ExperienceFrom = {
   works: [],
   isRequiredExperience: true,
@@ -71,5 +98,17 @@ export const initialValuesExperience: ExperienceFrom = {
 export const initialValuesEducation: EducationFrom = {
   institutions: [],
   isRequiredEducation: true,
+  isUpdate: false,
+}
+
+export const initialValuesSkills: SkillsFrom = {
+  skills: [],
+  isRequiredSkills: true,
+  isUpdate: false,
+}
+
+export const initialValuesContacts: ContactFrom = {
+  contacts: [],
+  isRequiredContact: true,
   isUpdate: false,
 }

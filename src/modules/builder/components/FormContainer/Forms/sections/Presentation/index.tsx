@@ -14,6 +14,7 @@ import {
 import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import { useBuilderStore } from '@/modules/builder/store'
+import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
 
 const PresentationForm = () => {
   const { presentationData, setPresentationData } = useBuilderStore(
@@ -45,6 +46,7 @@ const PresentationForm = () => {
         value={formik.values.fullName}
         errorMsg={formik.errors?.fullName}
         onChange={formik.handleChange}
+        placeholder={placeHolders.FULL_NAME}
       />
       <SimpleTextArea
         name='description'
@@ -52,6 +54,7 @@ const PresentationForm = () => {
         value={formik.values?.description}
         errorMsg={formik.errors?.description}
         onChange={formik.handleChange}
+        placeholder={placeHolders.DESCRIPTION}
       />
       <SimpleInput
         name='location'
@@ -59,6 +62,7 @@ const PresentationForm = () => {
         value={formik.values.location}
         errorMsg={formik.errors?.location}
         onChange={formik.handleChange}
+        placeholder={placeHolders.LOCATION}
       />
       <SimpleInputFile
         label='Foto'
