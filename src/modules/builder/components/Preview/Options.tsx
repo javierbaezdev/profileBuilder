@@ -31,49 +31,49 @@ const Options = () => {
       justify='space-between'
       gap={2}
     >
-      <Text
-        fontSize='md'
-        fontWeight='bold'
-        w={{ lg: '20%' }}
-      >
-        Previsualización
-      </Text>
-      <Flex
-        justify='flex-end'
-        w='full'
-      >
-        <Flex
-          gap={2}
-          w={{ lg: '100%' }}
-          justify='flex-end'
-          align='center'
+      {!isSmallScream && (
+        <Text
+          fontSize='md'
+          fontWeight='bold'
+          w={{ lg: '20%' }}
         >
-          <Flex>
-            <OnlyAutocomplete
-              label='idioma'
-              value={language}
-              onChange={(item) => {
-                if (item) {
-                  const valueToPass = item.value as Language
-                  onChangeLanguage(valueToPass)
-                }
-              }}
-              list={languages}
-              size={25}
-              isSearchable={false}
-            />
-          </Flex>
-          <Flex>
-            <OnlyAutocomplete
-              label='plantilla'
-              value={templatesOptions[0].value}
-              onChange={(item) => console.log(item)}
-              list={templatesOptions}
-              size={25}
-              isSearchable={false}
-              isDisabled={true}
-            />
-          </Flex>
+          Previsualización
+        </Text>
+      )}
+
+      <Flex
+        gap={2}
+        w='full'
+        justify={!isSmallScream ? 'flex-end' : 'center'}
+        align='center'
+      >
+        <Flex>
+          <OnlyAutocomplete
+            label='idioma'
+            value={language}
+            onChange={(item) => {
+              if (item) {
+                const valueToPass = item.value as Language
+                onChangeLanguage(valueToPass)
+              }
+            }}
+            list={languages}
+            size={25}
+            isSearchable={false}
+          />
+        </Flex>
+        <Flex>
+          <OnlyAutocomplete
+            label='plantilla'
+            value={templatesOptions[0].value}
+            onChange={(item) => console.log(item)}
+            list={templatesOptions}
+            size={25}
+            isSearchable={false}
+            isDisabled={true}
+          />
+        </Flex>
+        <Flex ml={isSmallScream ? 'auto' : undefined}>
           {!isSmallScream ? (
             <PDFDownloadLink
               document={TEMPLATE_DICT[templateSelected](

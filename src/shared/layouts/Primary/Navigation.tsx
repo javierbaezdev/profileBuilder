@@ -1,6 +1,7 @@
 import { Flex, Image, useDisclosure } from '@chakra-ui/react'
 import { PATHS } from '@/modules/builder/paths'
-import { MenuDeep, PaintFilled } from '@/shared/icons'
+import { PATHS as PATHS_SETTINGS } from '@/modules/settings/paths'
+import { MenuDeep, PaintFilled, Settings } from '@/shared/icons'
 import NavItem from './NavItem'
 import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 import { SimpleIconButton } from '@/shared/components/buttons'
@@ -21,6 +22,12 @@ const nav: Nav[] = [
     icon: <PaintFilled />,
     type: 'LINK',
   },
+  {
+    label: 'Ajustes',
+    href: PATHS_SETTINGS.BASE_MODULE.CLI,
+    icon: <Settings />,
+    type: 'LINK',
+  },
 ]
 
 const Navigation = () => {
@@ -28,7 +35,7 @@ const Navigation = () => {
   const { isOpen, onToggle } = useDisclosure()
   return (
     <>
-      <Flex>
+      <Flex gap={2}>
         {!isSmallScream &&
           nav.map((navItem) => (
             <NavItem
@@ -41,8 +48,9 @@ const Navigation = () => {
             icon={<MenuDeep />}
             aria-label='menu'
             onClick={() => onToggle()}
+            color='zinc.200'
             bg='transparent'
-            _hover={{ bg: 'transparent', color: 'mediumPurple.300' }}
+            _hover={{ bg: 'transparent', color: 'zinc.400' }}
             size='xs'
           />
         )}
@@ -55,7 +63,7 @@ const Navigation = () => {
           size='full'
         >
           <Flex
-            gap={2}
+            gap={4}
             direction='column'
             p={4}
           >

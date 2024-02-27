@@ -17,7 +17,7 @@ import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
 import workTypes from '@/shared/data/workTypes.json'
-import { WORK_TYPE_DICT } from '@/shared/constants'
+import { GET_IS_SMALL_SCREAM, WORK_TYPE_DICT } from '@/shared/constants'
 import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
 
 interface Props {
@@ -35,6 +35,7 @@ const WorkForm = ({
   addNewWork,
   updateDataWork,
 }: Props) => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   const initialValues = { ...initialValuesWork, key: generateId() }
   const formik = useFormik<Work>({
     initialValues,
@@ -118,7 +119,10 @@ const WorkForm = ({
           name='isCurrent'
           onChange={formik.handleChange}
         />
-        <Flex gap={2}>
+        <Flex
+          gap={2}
+          direction={!isSmallScream ? 'row' : 'column'}
+        >
           <DatePicker
             label='Fecha desde'
             dateValue={

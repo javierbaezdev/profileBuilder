@@ -31,24 +31,29 @@ const ContactItemComponent = ({
           align='center'
         >
           <Text>{data.value}</Text>
-          <SimpleIconButton
-            icon={<EditCircle />}
-            aria-label='edit'
-            bg='zinc.500'
-            color='zinc.50'
-            _hover={{ bg: 'zinc.800' }}
-            size='xs'
-            onClick={() => updateContact(data)}
-          />
-          <SimpleIconButton
-            icon={<Trash />}
-            aria-label='delete'
-            bg='zinc.500'
-            color='zinc.50'
-            _hover={{ bg: 'zinc.800' }}
-            size='xs'
-            onClick={() => deleteContact(data)}
-          />
+          <Flex
+            gap={2}
+            ml={isSmallScream ? 'auto' : undefined}
+          >
+            <SimpleIconButton
+              icon={<EditCircle />}
+              aria-label='edit'
+              bg='zinc.500'
+              color='zinc.50'
+              _hover={{ bg: 'zinc.800' }}
+              size='xs'
+              onClick={() => updateContact(data)}
+            />
+            <SimpleIconButton
+              icon={<Trash />}
+              aria-label='delete'
+              bg='zinc.500'
+              color='zinc.50'
+              _hover={{ bg: 'zinc.800' }}
+              size='xs'
+              onClick={() => deleteContact(data)}
+            />
+          </Flex>
         </Flex>
       </Flex>
     </>

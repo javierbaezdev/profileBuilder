@@ -12,9 +12,15 @@ import {
 interface Props extends ModalProps {
   modalHeader: string | JSX.Element
   children: JSX.Element
+  showCloseButton?: boolean
 }
 
-const SimpleModal = ({ children, modalHeader, ...props }: Props) => {
+const SimpleModal = ({
+  children,
+  modalHeader,
+  showCloseButton = true,
+  ...props
+}: Props) => {
   const bg = useColorModeValue('zinc.100', 'zinc.900')
   return (
     <Modal
@@ -26,7 +32,7 @@ const SimpleModal = ({ children, modalHeader, ...props }: Props) => {
       <ModalOverlay />
       <ModalContent bg={bg}>
         <ModalHeader>{modalHeader}</ModalHeader>
-        <ModalCloseButton bg='transparent' />
+        {showCloseButton && <ModalCloseButton bg='transparent' />}
         <ModalBody>{children}</ModalBody>
       </ModalContent>
     </Modal>

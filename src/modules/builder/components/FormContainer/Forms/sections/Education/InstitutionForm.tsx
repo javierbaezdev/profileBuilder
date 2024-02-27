@@ -16,6 +16,7 @@ import { SimpleButton } from '@/shared/components/buttons'
 import { DeviceFloppy } from '@/shared/icons'
 import trimObjectValues from '@/shared/utils/trimObjectValues'
 import placeHolders from '@/modules/builder/components/FormContainer/Forms/placeHolders.json'
+import { GET_IS_SMALL_SCREAM } from '@/shared/constants'
 
 interface Props {
   data?: Institution
@@ -32,6 +33,7 @@ const InstitutionForm = ({
   addNewInstitution,
   updateDataInstitution,
 }: Props) => {
+  const isSmallScream = GET_IS_SMALL_SCREAM()
   const initialValues = { ...initialValuesInstitution, key: generateId() }
   const formik = useFormik<Institution>({
     initialValues,
@@ -96,7 +98,10 @@ const InstitutionForm = ({
           name='isCurrent'
           onChange={formik.handleChange}
         />
-        <Flex gap={2}>
+        <Flex
+          gap={2}
+          direction={!isSmallScream ? 'row' : 'column'}
+        >
           <DatePicker
             label='Fecha desde'
             dateValue={

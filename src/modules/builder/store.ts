@@ -18,7 +18,7 @@ import {
 import trimObjectValues from '@/shared/utils/trimObjectValues'
 import { Language, Templates } from './types'
 
-interface State {
+interface StateBase {
   templateSelected: Templates
   language: Language
   presentationData: PresentationFrom
@@ -27,6 +27,9 @@ interface State {
   educationData: EducationFrom
   skillsData: SkillsFrom
   contactsData: ContactFrom
+}
+
+interface State extends StateBase {
   onChangeLanguage: (language: Language) => void
   setPresentationData: (presentation: PresentationFrom) => void
   setAboutData: (about: AboutFrom) => void
@@ -37,19 +40,23 @@ interface State {
   resetData: (type: string) => void
 }
 
+const initialValues: StateBase = {
+  templateSelected: 'BASIC',
+  language: 'ES',
+  presentationData: initialValuesPresentation,
+  aboutData: initialValuesAbout,
+  experienceData: initialValuesExperience,
+  educationData: initialValuesEducation,
+  skillsData: initialValuesSkills,
+  contactsData: initialValuesContacts,
+}
+
 export const useBuilderStore = create<State>()(
   devtools(
     persist(
       (set, get) => {
         return {
-          templateSelected: 'BASIC',
-          language: 'ES',
-          presentationData: initialValuesPresentation,
-          aboutData: initialValuesAbout,
-          experienceData: initialValuesExperience,
-          educationData: initialValuesEducation,
-          skillsData: initialValuesSkills,
-          contactsData: initialValuesContacts,
+          ...initialValues,
           onChangeLanguage: (lgs) => {
             const { language } = get()
 
@@ -182,6 +189,12 @@ export const useBuilderStore = create<State>()(
                 contactsData: initialValuesContacts,
               })
               message = `"Contacto" reseteado correctamente 🎉`
+            }
+            if (type === 'ALL_STORE') {
+              set({
+                ...initialValues,
+              })
+              message = `"CV BUILDER" reseteado correctamente 🎉`
             }
             showToast({
               msg: message,

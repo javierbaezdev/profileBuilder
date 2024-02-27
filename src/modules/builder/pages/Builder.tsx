@@ -9,17 +9,18 @@ const Builder = () => {
     <Flex
       gap={2}
       w='full'
-      direction={isSmallScream ? 'column' : 'row'}
+      direction={isSmallScream ? 'column-reverse' : 'row'}
+      justify={isSmallScream ? 'flex-end' : undefined}
     >
       <Box
         w='full'
-        flex={4}
+        flex={!isSmallScream ? 4 : undefined}
       >
         <FormContainer />
       </Box>
       <Box
         w='full'
-        flex={6}
+        flex={!isSmallScream ? 6 : undefined}
       >
         <Preview />
       </Box>

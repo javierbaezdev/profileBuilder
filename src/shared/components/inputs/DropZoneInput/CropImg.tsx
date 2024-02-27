@@ -68,6 +68,7 @@ const CropImg = ({
       onClose={() => {}}
       modalHeader='Ajustar imagen'
       size='xl'
+      showCloseButton={false}
     >
       <Flex
         direction='column'
