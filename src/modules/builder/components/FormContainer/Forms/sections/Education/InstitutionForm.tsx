@@ -70,7 +70,7 @@ const InstitutionForm = ({
         formik.resetForm()
         onClose()
       }}
-      modalHeader={!data ? 'Agregar trabajo' : 'Actualizar trabajo'}
+      modalHeader={!data ? 'Agregar Institución' : 'Actualizar Institución'}
     >
       <Flex
         direction='column'
