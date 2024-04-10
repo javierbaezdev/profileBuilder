@@ -1,19 +1,29 @@
 import * as Yup from 'yup'
 import { SCHEMA_MESSAGES } from '@/shared/constants'
 
+const PRESENTATION_DESCRIPTION_MAX_TEXT = 500
+const ABOUT_DESCRIPTION_MAX_TEXT = 1000
+const WORK_DESCRIPTION_MAX_TEXT = 1000
+
 export const presentationSchema = Yup.object().shape({
   fullName: Yup.string()
     .max(43, SCHEMA_MESSAGES.maxCha + 43)
     .required(SCHEMA_MESSAGES.required),
-  description: Yup.string().max(100, SCHEMA_MESSAGES.maxCha + 100),
-  location: Yup.string().max(40, SCHEMA_MESSAGES.maxCha + 40),
+  description: Yup.string().max(
+    PRESENTATION_DESCRIPTION_MAX_TEXT,
+    SCHEMA_MESSAGES.maxCha + PRESENTATION_DESCRIPTION_MAX_TEXT
+  ),
+  location: Yup.string().max(60, SCHEMA_MESSAGES.maxCha + 60),
   imgUrl: Yup.string(),
   isRequiredPresentation: Yup.boolean(),
   isUpdate: Yup.boolean(),
 })
 
 export const aboutSchema = Yup.object().shape({
-  description: Yup.string().max(630, SCHEMA_MESSAGES.maxCha + 630),
+  description: Yup.string().max(
+    ABOUT_DESCRIPTION_MAX_TEXT,
+    SCHEMA_MESSAGES.maxCha + ABOUT_DESCRIPTION_MAX_TEXT
+  ),
   isRequiredAbout: Yup.boolean(),
   isRequiredPresentation: Yup.boolean(),
   isUpdate: Yup.boolean(),
@@ -21,7 +31,10 @@ export const aboutSchema = Yup.object().shape({
 
 export const workSchema = Yup.object().shape({
   key: Yup.string().required(SCHEMA_MESSAGES.required),
-  description: Yup.string().max(100, SCHEMA_MESSAGES.maxCha + 100),
+  description: Yup.string().max(
+    WORK_DESCRIPTION_MAX_TEXT,
+    SCHEMA_MESSAGES.maxCha + WORK_DESCRIPTION_MAX_TEXT
+  ),
   position: Yup.string()
     .max(30, SCHEMA_MESSAGES.maxCha + 30)
     .required(SCHEMA_MESSAGES.required),
